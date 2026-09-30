@@ -18,6 +18,7 @@ import {
   transition,
 } from "./lib/store";
 import {
+  acquistaHtml,
   bonificoHtml,
   doneHtml,
   erroreHtml,
@@ -27,6 +28,7 @@ import {
   payNonProntoHtml,
   paywallHtml,
   pagatoHtml,
+  storefrontHtml,
   wizardHtml,
 } from "./lib/pages";
 
@@ -135,15 +137,61 @@ const app = new Elysia()
     );
   })
 
-  // ------------------------------------------------------------ indice demo
+  // ------------------------------------------------------------ storefront marketing
   .get("/", () => {
+    const VISIBILI = ["approved", "published", "contacted", "opened", "completing",
+      "completed", "pending_manual", "paid", "active"];
     const siti = allSlugs()
       .map((slug) => {
         const lead = loadLead(slug);
-        return lead ? { slug, nome: String(lead.nome_attivita ?? slug) } : null;
+        if (lead === null || !VISIBILI.includes(lead.stato_pipeline)) return null;
+        return {
+          slug,
+          nome: String(lead.nome_attivita ?? slug),
+          citta: String(lead.citta ?? ""),
+          verticale: String(lead.verticale ?? ""),
+          stato: lead.stato_pipeline,
+        };
       })
-      .filter((s): s is { slug: string; nome: string } => s !== null);
-    return html(indiceHtml(siti));
+      .filter((s): s is NonNullable<typeof s> => s !== null)
+      .sort((a, b) => a.nome.localeCompare(b.nome));
+    return html(storefrontHtml(siti, VENDITORE.setup, VENDITORE.mensile));
+  })
+
+  // --------------------------------------------------- acquisto pubblico
+  .get("/acquista/:slug", ({ params }) => {
+    const lead = loadLead(params.slug);
+    if (lead === null) return html(erroreHtml("Pagina non trovata."), 404);
+    if (isPaid(lead)) return html(pagatoHtml(lead, String(lead.live_url ?? "")));
+    return html(acquistaHtml(lead, VENDITORE.setup, VENDITORE.mensile, VENDITORE.iban, VENDITORE.ragione_sociale));
+  })
+  .post("/acquista/:slug", ({ params, body }) => {
+    const lead = loadLead(params.slug);
+    if (lead === null) return html(erroreHtml("Pagina non trovata."), 404);
+    if (isPaid(lead)) return html(pagatoHtml(lead, String(lead.live_url ?? "")));
+    const metodo = ((body ?? {}) as Record<string, string>).metodo ?? "";
+    // acquisto pubblico: chi paga dichiara la titolarità (verifica umana al primo contatto,
+    // nota nella history); i dati aziendali sono pubblici, nessun dato personale esposto
+    const rif = metodo === "carta" ? `cs_store_${lead.slug.slice(0, 14)}_${Date.now().toString(36)}` : "";
+    lead.pagato = {
+      metodo: metodo === "carta" ? "carta" : "bonifico",
+      importo: String(VENDITORE.setup),
+      data: new Date().toISOString(),
+      rif: rif || `bon_store_${lead.slug.slice(0, 14)}`,
+    };
+    if (!["completed", "pending_manual", "paid", "active"].includes(lead.stato_pipeline)) {
+      transition(lead, "completed", "storefront", "acquisto diretto dalla home (mock)");
+    }
+    if (metodo === "carta") {
+      transition(lead, "paid", "storefront", `pagamento carta ${VENDITORE.setup}€ (mock)`);
+      marcaAttivo(lead);
+      logAttivita(lead.slug, "pagamento", "carta-storefront");
+      return html(pagatoHtml(lead, String(lead.live_url ?? "")));
+    }
+    transition(lead, "pending_manual", "storefront", "bonifico richiesto dalla home (mock)");
+    saveLead(lead);
+    logAttivita(lead.slug, "pagamento", "bonifico-storefront");
+    return html(bonificoHtml(lead, VENDITORE.iban, VENDITORE.ragione_sociale, lead.slug, VENDITORE.setup));
   })
 
   .get("/health", () => json({ status: "ok", service: "autolanding-v2", host: HOSTNAME_PUBBLICO }))

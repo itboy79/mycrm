@@ -230,3 +230,151 @@ export function indiceHtml(siti: { slug: string; nome: string }[]): string {
 </div>`,
   );
 }
+
+// --------------------------------------------------------------- storefront
+export function storefrontHtml(
+  siti: { slug: string; nome: string; citta: string; verticale: string; stato: string }[],
+  setup: number,
+  mensile: number,
+): string {
+  const badgeVerticale: Record<string, string> = {
+    ristorazione: "🍽 Ristorazione",
+    saloni: "✂️ Saloni",
+    artigiani: "🔧 Artigiani",
+  };
+  const schede = siti
+    .map((s) => {
+      const attivo = s.stato === "active" || s.stato === "paid";
+      return `<article class="scheda">
+  <div class="scheda-testa">
+    <span class="badge-v">${badgeVerticale[s.verticale] ?? s.verticale}</span>
+    <span class="citta">${s.citta}</span>
+  </div>
+  <h3>${s.nome}</h3>
+  <div class="scheda-azioni">
+    <a class="mini-btn" href="/sites/${s.slug}/">Apri la demo</a>
+    ${attivo
+      ? `<span class="già">✓ già attivo</span>`
+      : `<a class="mini-btn mini-btn--buy" href="/acquista/${s.slug}">Acquista questa pagina</a>`}
+  </div>
+</article>`;
+    })
+    .join("\n");
+
+  return pagina2(
+    "AutoLanding — il tuo sito è già pronto",
+    `<header class="hero-m">
+  <h1>Il tuo sito è già online.<br>Te lo facciamo trovare.</h1>
+  <p class="lead-m">Costruiamo in anticipo la pagina web delle attività della tua zona:
+  sito vero, in <strong>italiano e inglese</strong>, con orari, mappa, menu o servizi e contatti.
+  Se è la tua, la attivi in due minuti.</p>
+  <div class="prezzo">
+    <div><strong>${setup}€</strong> una volta sola (setup)</div>
+    <div><strong>${mensile}€/mese</strong> tutto compreso · disdici quando vuoi</div>
+  </div>
+</header>
+<section class="sezione-m">
+  <h2>Pagine pronte in questa zona</h2>
+  <p class="help">Ogni pagina è costruita sui dati pubblici dell'attività. La vedi prima di pagare: se non ti piace, non compri niente.</p>
+  <div class="griglia-schede">${schede || "<p>Nessuna pagina demo al momento: torna a trovarci.</p>"}</div>
+</section>
+<section class="sezione-m sezione-m--alt">
+  <h2>Come funziona</h2>
+  <ol class="passi">
+    <li><strong>Trova la tua pagina</strong> nell'elenco (o apri il link che ti abbiamo mandato)</li>
+    <li><strong>Conferma i dati in 2 minuti</strong> dal telefono: nome, orari, servizi, foto</li>
+    <li><strong>Attivi: 99€ + 19€/mese</strong> — sito online, indicizzato su Google, fattura regolare</li>
+  </ol>
+  <p class="help">Siti semplici e onesti: una pagina che fa il suo lavoro, non un cantiere. A fine rapporto te lo consegniamo in export: resta tuo.</p>
+</section>
+<section class="sezione-m">
+  <h2>Domande frequenti</h2>
+  <p><strong>È una truffa? Come fate a conoscere la mia attività?</strong><br>
+  I dati della demo vengono da fonti pubbliche (schede, directory). Guarda la pagina: se qualcosa non torna, non pagare — scrivici e la correggiamo.</p>
+  <p><strong>Perché così poco?</strong><br>
+  Perché il sito lo costruisce un sistema automatico e lo controlla una persona: niente incontri, niente cantieri, una pagina che funziona.</p>
+  <p><strong>Il sito resta mio?</strong><br>
+  Sì. Le foto e i testi sono tuoi, e se vai via ricevi l'export completo della pagina.</p>
+  <p><strong>E se smetto di pagare?</strong><br>
+  Resta online fino a fine periodo pagato. Dopo 3 mensilità non incassate si sospende: lo riattivi saldando, senza penali.</p>
+</section>
+<section class="sezione-m sezione-m--cta">
+  <h2>La tua attività non è nell'elenco?</h2>
+  <p>Scrivici: costruiamo la pagina anche per te, la vedi prima di pagare. <a href="mailto:info@example-domain.it">info@example-domain.it</a></p>
+</section>`,
+  );
+}
+
+function pagina2(titolo: string, corpo: string): string {
+  return `<!DOCTYPE html><html lang="it"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>${titolo}</title><style>
+:root{--blu:#1E4E79;--blu-scuro:#16405F;--ink:#22303C;--grigio:#5A6B7A;--carta:#fff;
+--fondo:#F4F6F8;--bordo:#C9D3DC;--r:12px;--oro:#B9863C}
+*{box-sizing:border-box}body{margin:0;font-family:system-ui,-apple-system,"Segoe UI",sans-serif;
+background:var(--fondo);color:var(--ink);line-height:1.55}
+main{max-width:62rem;margin:0 auto;padding:0 1rem}
+h1{font-size:1.7rem;line-height:1.25;margin:0 0 .8rem}h2{font-size:1.25rem;margin:0 0 .8rem}
+h3{margin:0 0 .5rem;font-size:1.05rem}p{margin:0 0 .9rem}a{color:var(--blu)}
+.help{color:var(--grigio);font-size:.9rem}
+.hero-m{background:linear-gradient(180deg,#fff, var(--fondo));padding:3rem 0 2rem;text-align:center}
+.hero-m .lead-m{max-width:40rem;margin:0 auto 1.2rem;font-size:1.05rem}
+.prezzo{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
+.prezzo div{background:#fff;border:2px solid var(--blu);border-radius:var(--r);padding:.7rem 1.2rem}
+.sezione-m{padding:2rem 0}
+.sezione-m--alt{background:#fff;border-top:1px solid var(--bordo);border-bottom:1px solid var(--bordo)}
+.sezione-m--cta{text-align:center;padding-bottom:3rem}
+.griglia-schede{display:grid;grid-template-columns:repeat(auto-fill,minmax(16rem,1fr));gap:1rem}
+.scheda{background:var(--carta);border:1px solid var(--bordo);border-radius:var(--r);padding:1.1rem;
+display:flex;flex-direction:column;gap:.6rem}
+.scheda-testa{display:flex;justify-content:space-between;align-items:center;font-size:.85rem;color:var(--grigio)}
+.badge-v{background:#E3ECF2;color:var(--blu);border-radius:999px;padding:.15rem .6rem;font-weight:600}
+.scheda-azioni{display:flex;gap:.5rem;flex-wrap:wrap;align-items:center;margin-top:auto}
+.mini-btn{display:inline-flex;align-items:center;min-height:40px;padding:.45rem .9rem;border-radius:8px;
+border:1px solid var(--blu);color:var(--blu);text-decoration:none;font-weight:600;font-size:.9rem}
+.mini-btn--buy{background:var(--blu);color:#fff}
+.già{color:var(--grigio);font-size:.85rem}
+.passi{padding-left:1.2rem}.passi li{margin-bottom:.7rem}
+:focus-visible{outline:3px solid #8A6420;outline-offset:2px}
+footer{max-width:62rem;margin:1.5rem auto;padding:1rem;color:var(--grigio);font-size:.85rem;text-align:center}
+@media (max-width:500px){h1{font-size:1.35rem}.hero-m{padding:2rem 0 1.4rem}}
+</style></head><body>
+<main>${corpo}</main>
+<footer>AutoLanding · <a href="/privacy">Privacy</a> · <a href="/cookie">Cookie</a> · <a href="/condizioni">Condizioni</a></footer>
+</body></html>`;
+}
+
+export function acquistaHtml(
+  lead: Record<string, unknown>,
+  setup: number,
+  mensile: number,
+  iban: string,
+  intestatario: string,
+): string {
+  const slug = String(lead.slug ?? "");
+  const nome = String(lead.nome_attivita ?? slug);
+  const attivo = String(lead.stato_pipeline) === "active" || String(lead.stato_pipeline) === "paid";
+  return pagina2(
+    `Acquista la pagina di ${nome}`,
+    `<main><div class="card" style="max-width:40rem">
+  <h1>${nome} — ${lead.citta ?? ""}</h1>
+  ${attivo
+    ? `<div class="ok"><p>Questa pagina è già attiva e online.</p></div>`
+    : `<div class="warn"><p>Sei il titolare di <strong>${nome}</strong>? Questa pagina è stata costruita sui suoi dati pubblici ed è già online in anteprima. Se è tua, attivala: resta tua, con disdetta libera.</p></div>
+  <p><a class="btn btn--secondary" href="/sites/${slug}/">Rivedi la pagina demo</a></p>
+  <h2>Attiva ora: ${setup}€ + ${mensile}€/mese</h2>
+  <p><strong>Paga con carta</strong> (attivazione immediata)</p>
+  <form method="post" action="/acquista/${slug}">
+    <input type="hidden" name="metodo" value="carta">
+    <button class="btn btn--primary" type="submit">Paga ${setup}€ con carta</button>
+  </form>
+  <p style="margin-top:1rem"><strong>Oppure bonifico</strong> (1-2 giorni lavorativi)</p>
+  <form method="post" action="/acquista/${slug}">
+    <input type="hidden" name="metodo" value="bonifico">
+    <button class="btn btn--secondary" type="submit">Paga con bonifico</button>
+  </form>
+  <p class="help" style="margin-top:.9rem">IBAN: <code>${iban}</code> · Intestatario: ${intestatario} · Causale: <code>${slug}</code></p>
+  <p class="help">Dopo il pagamento: fattura entro 24h, il sito viene indicizzato su Google e ricevi il link per le modifiche future. Nota: per il primo contatto ti chiederemo di confermare la titolarità.</p>`}
+</div></main>`,
+  );
+}

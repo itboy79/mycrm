@@ -1,5 +1,5 @@
 slug: trattoria-la-brace-brescia
-stato_pipeline: completed
+stato_pipeline: active
 verticale: ristorazione
 nome_attivita: Trattoria La Brace
 ragione_sociale: TRATTORIA LA BRACE DI ROSSI MARIO
@@ -72,6 +72,14 @@ history:
     data: 2026-09-30T22:39:32.234Z
     autore: wizard-web-v2
     nota: dati confermati dal wizard v2
+  - stato: paid
+    data: 2026-09-30T23:12:41.841Z
+    autore: storefront
+    nota: pagamento carta 99€ (mock)
+  - stato: active
+    data: 2026-09-30T23:12:41.846Z
+    autore: stripe-webhook-v2
+    nota: attivato
 live_url: https://trattoria-la-brace-brescia.demo.autolanding.local
 deployed_at: 2026-08-30T19:56:18+00:00
 demo_expires_at: 2026-09-13T19:56:18+00:00
@@ -80,3 +88,8 @@ token_tipo: demo
 token_emesso_at: 2026-08-30T19:56:18+00:00
 contacted_at: 2026-08-30T19:56:18+00:00
 completato_via: web-v2
+pagato:
+  metodo: carta
+  importo: "99"
+  data: 2026-09-30T23:12:41.841Z
+  rif: cs_store_trattoria-la-b_muoq0i29
