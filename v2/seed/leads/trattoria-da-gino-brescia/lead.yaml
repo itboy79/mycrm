@@ -1,0 +1,116 @@
+slug: trattoria-da-gino-brescia
+stato_pipeline: pending_manual
+verticale: ristorazione
+nome_attivita: Trattoria da Gino
+ragione_sociale: GINO E FIGLI SNC
+categoria: Ristorante italiano
+citta: Brescia
+cap: "25100"
+indirizzo: Via dei Mille 12, 25100 Brescia (BS)
+telefono: +39 030 5551234
+email: info@trattoriadagino-brescia.it
+sito_esistente: false
+orari:
+  - giorni: mar-dom
+    apertura: 12:00
+    chiusura: 14:30
+  - giorni: mar-dom
+    apertura: 19:00
+    chiusura: 22:30
+  - giorni: lun
+    apertura: ""
+    chiusura: ""
+servizi:
+  - Cucina bresciana
+  - Pizzeria
+  - Asporto
+  - Menu vegetariano
+  - Sala per gruppi
+  - Parcheggio
+descrizione: Riattivazione test v2
+foto_profilo_url: https://picsum.photos/seed/gino/1200/800
+recensioni:
+  media: 4.3
+  numero: 87
+fonte: google-maps
+confidence:
+  ragione_sociale: high
+  orari: medium
+  servizi: guess
+token_completa: fixture-token-gino-0001
+live_url: https://trattoria-da-gino-brescia.demo.autolanding.local
+deployed_at: 2026-09-18T02:47:10+00:00
+demo_expires_at: 2026-09-13T15:07:58+00:00
+contacted_at: 2026-08-30T19:56:10+00:00
+pagato:
+  metodo: ""
+  importo: ""
+  data: ""
+  rif: ""
+suppression: true
+history:
+  - stato: scouted
+    data: 2026-08-30T10:00:00+02:00
+    autore: fixture
+    nota: lead fittizio per test engine
+  - stato: enriched
+    data: 2026-08-30T10:05:00+02:00
+    autore: fixture
+    nota: arricchimento simulato
+  - stato: generated
+    data: 2026-08-30T15:07:58+00:00
+    autore: e2e-check
+    nota: verifica E2E coordinatore
+  - stato: approved
+    data: 2026-08-30T15:07:58+00:00
+    autore: e2e-check
+    nota: verifica E2E coordinatore
+  - stato: published
+    data: 2026-08-30T15:07:58+00:00
+    autore: engine.deploy
+    nota: deploy local su https://trattoria-da-gino-brescia.demo.autolanding.local,
+      demo scade 2026-09-13T15:07:58+00:00
+  - stato: contacted
+    data: 2026-08-30T19:56:10+00:00
+    autore: engine.outreach
+    nota: "sequenza mock avviata (v1), ESP: mock"
+  - stato: contacted
+    data: 2026-08-30T19:56:10+00:00
+    autore: engine.outreach
+    nota: "outreach mock: inviate nessuna; saltate: v1: già inviata; v2: follow-up
+      non ancora dovuto (D+3); v3: break-up non ancora dovuto (D+7)"
+  - stato: contacted
+    data: 2026-08-30T19:56:18+00:00
+    autore: engine.outreach
+    nota: "outreach mock: inviate nessuna; saltate: v1: già inviata; v2: follow-up
+      non ancora dovuto (D+3); v3: break-up non ancora dovuto (D+7)"
+  - stato: contacted
+    data: 2026-09-18T02:46:22+00:00
+    autore: engine.deploy
+    nota: redeploy local su https://trattoria-da-gino-brescia.demo.autolanding.local
+  - stato: contacted
+    data: 2026-09-18T02:47:10+00:00
+    autore: engine.deploy
+    nota: redeploy local su https://trattoria-da-gino-brescia.demo.autolanding.local
+  - stato: expired
+    data: 2026-09-18T03:01:13+00:00
+    autore: engine.teardown
+    nota: "demo scaduta il 2026-09-13T15:07:58+00:00: pagina sostituita, lead non
+      pagato"
+  - stato: completing
+    data: 2026-09-30T22:40:59.659Z
+    autore: wizard-web-v2
+    nota: il lead ha aperto il wizard
+  - stato: completed
+    data: 2026-09-30T22:40:59.664Z
+    autore: wizard-web-v2
+    nota: dati confermati dal wizard v2
+  - stato: pending_manual
+    data: 2026-09-30T22:40:59.739Z
+    autore: pay-v2
+    nota: bonifico richiesto dal lead
+  - stato: pending_manual
+    data: 2026-09-30T22:40:59.813Z
+    autore: optout
+    nota: suppression permanente
+completato_via: web-v2

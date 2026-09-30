@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<!--
+  AutoLanding — pagina "chi siamo" del venditore (asset P1 del GTM plan, gate di fiducia pre-invio).
+  Design neutro e volontariamente sobrio: è la pagina che un titolare apre per capire CHI gli ha scritto.
+  TUTTI i valori fittizi sono marcati [MOCK: sostituire] (email, telefono, sede, referente, orari, dati societari).
+-->
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AutoLanding — Siti semplici per attività senza sito</title>
+<meta name="description" content="Sito semplice e completo per la sua attività, già pronto online. Lo guarda gratis prima di pagare: 19€ al mese tutto compreso, disdetta quando vuole.">
+<style>
+/* ===== Design neutro: bianco/grigio/inchiostro, un solo accento sobrio. Nessun cookie, nessun tracking. ===== */
+:root{
+  --inchiostro:#1F2833;
+  --testo:#2A333E;
+  --muto:#566069;
+  --sfondo:#FFFFFF;
+  --sfondo-alt:#F4F6F8;
+  --bordo:#DDE2E8;
+  --accento:#1E4E79;
+  --accento-tenue:#E9EFF5;
+  --s1:4px; --s2:8px; --s3:12px; --s4:16px; --s5:24px; --s6:32px; --s7:48px; --s8:64px;
+  --r:12px; --r-lg:16px;
+}
+*,*::before,*::after{box-sizing:border-box}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{transition:none!important;animation:none!important}
+  html{scroll-behavior:auto}
+}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--sfondo);color:var(--testo);
+  font-family:system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  font-size:1.0625rem;line-height:1.65;-webkit-text-size-adjust:100%}
+h1,h2,h3{line-height:1.25;margin:0 0 var(--s4);color:var(--inchiostro);font-weight:750;letter-spacing:-.01em}
+h1{font-size:clamp(1.9rem,4.2vw + 1rem,2.9rem)}
+h2{font-size:clamp(1.5rem,2.4vw + .9rem,2rem)}
+h3{font-size:1.125rem}
+p{margin:0 0 var(--s4)}
+ul{margin:0 0 var(--s4);padding-left:1.25rem}
+li{margin-bottom:var(--s2)}
+a{color:var(--accento);text-decoration-thickness:1px;text-underline-offset:3px}
+a:hover{color:var(--inchiostro)}
+:focus-visible{outline:3px solid var(--accento);outline-offset:2px}
+.site-foot :focus-visible{outline-color:#fff}
+.container{width:min(56rem,100% - 2*var(--s4));margin-inline:auto}
+.misura{max-width:42rem}
+.skip-link{position:absolute;left:-999px;top:0;background:var(--inchiostro);color:#fff;
+  padding:var(--s3) var(--s4);z-index:100;border-radius:0 0 var(--r) 0;text-decoration:none;min-height:44px;display:inline-flex;align-items:center}
+.skip-link:focus{left:0;color:#fff}
+
+/* Testata */
+.site-head{border-bottom:1px solid var(--bordo);background:var(--sfondo)}
+.site-head__row{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:var(--s2) var(--s4);padding-block:var(--s3)}
+.brand{font-weight:750;font-size:1.125rem;color:var(--inchiostro);text-decoration:none;margin:0}
+.brand:hover{color:var(--accento)}
+.site-nav{display:flex;flex-wrap:wrap;gap:var(--s1) var(--s2)}
+.site-nav a{display:inline-flex;align-items:center;min-height:44px;padding:var(--s2) var(--s3);
+  font-size:.9375rem;font-weight:600;color:var(--testo);text-decoration:none;border-radius:var(--r)}
+.site-nav a:hover{background:var(--accento-tenue);color:var(--inchiostro)}
+
+/* Sezioni */
+.section{padding-block:clamp(3rem,6vw,4.5rem)}
+.section--alt{background:var(--sfondo-alt)}
+.kicker{margin:0 0 var(--s3);font-size:.8125rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muto)}
+.lead{font-size:1.1875rem;line-height:1.6}
+.section-head{margin-bottom:var(--s5)}
+.section-head p:last-child{margin-bottom:0}
+
+/* Hero */
+.hero{background:var(--sfondo-alt);border-bottom:1px solid var(--bordo);padding-block:clamp(3rem,7vw,5rem)}
+.hero .lead{max-width:44rem}
+.hero__cta{display:flex;flex-direction:column;gap:var(--s3);margin-top:var(--s5)}
+@media (min-width:480px){.hero__cta{flex-direction:row}}
+
+/* Sintesi rapida */
+.in-sintesi{background:var(--accento-tenue);border:1px solid var(--bordo);border-left:4px solid var(--accento);
+  border-radius:var(--r);padding:var(--s5);margin-top:var(--s6);max-width:44rem}
+.in-sintesi h2{font-size:1.0625rem;letter-spacing:.05em;text-transform:uppercase;margin-bottom:var(--s3)}
+.in-sintesi ul{margin-bottom:0}
+.in-sintesi li::marker{color:var(--accento)}
+
+/* Bottoni */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:var(--s2);
+  min-height:48px;padding:var(--s3) var(--s5);border-radius:999px;
+  font:600 1rem/1 inherit;font-family:inherit;letter-spacing:.01em;text-decoration:none;cursor:pointer;
+  border:2px solid transparent;transition:background-color .15s ease-out,color .15s ease-out,border-color .15s ease-out}
+.btn:active{transform:translateY(1px)}
+.btn--primary{background:var(--inchiostro);color:#fff}
+.btn--primary:hover{background:#11161D;color:#fff}
+.btn--secondary{background:transparent;color:var(--inchiostro);border-color:var(--inchiostro)}
+.btn--secondary:hover{background:#E9EDF1;color:var(--inchiostro)}
+.btn--lg{min-height:52px;padding:var(--s3) var(--s6)}
+
+/* Blocchi evidenziati */
+.chiaro{background:var(--sfondo);border:1px solid var(--bordo);border-left:4px solid var(--accento);
+  border-radius:var(--r);padding:var(--s5);margin-bottom:var(--s4)}
+.chiaro p:last-child{margin-bottom:0}
+.due-colonne{display:grid;gap:var(--s5)}
+@media (min-width:700px){.due-colonne{grid-template-columns:1fr 1fr}}
+
+/* Garanzie */
+.garanzie__grid{display:grid;gap:var(--s4)}
+@media (min-width:760px){.garanzie__grid{grid-template-columns:repeat(3,1fr)}}
+.garanzia{background:var(--sfondo);border:1px solid var(--bordo);border-radius:var(--r-lg);
+  padding:var(--s5);box-shadow:0 1px 3px rgba(31,40,51,.06)}
+.garanzia p:last-child{margin-bottom:0}
+
+/* Prezzo */
+.prezzo-box{display:flex;flex-wrap:wrap;gap:var(--s4) var(--s7);background:var(--sfondo);
+  border:1px solid var(--bordo);border-radius:var(--r-lg);padding:var(--s5);margin-block:var(--s5)}
+.prezzo-box div{margin:0}
+.prezzo-box dt{font-size:.9375rem;color:var(--muto);margin:0 0 var(--s1)}
+.prezzo-box dd{margin:0;font-size:1.75rem;font-weight:750;color:var(--inchiostro);font-variant-numeric:tabular-nums}
+.prezzo-box dd small{font-size:.9375rem;font-weight:400;color:var(--muto)}
+
+/* FAQ */
+.faq{max-width:44rem}
+.faq details{background:var(--sfondo);border:1px solid var(--bordo);border-radius:var(--r);margin-bottom:var(--s3)}
+.faq summary{list-style:none;display:flex;align-items:center;justify-content:space-between;gap:var(--s3);
+  min-height:48px;padding:var(--s3) var(--s4);font-weight:600;cursor:pointer;color:var(--inchiostro)}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";font-size:1.375rem;line-height:1;color:var(--accento);flex:0 0 auto}
+.faq details[open] summary::after{content:"–"}
+.faq .risposta{padding:0 var(--s4) var(--s4)}
+
+/* Contatti */
+.contatti__grid{display:grid;gap:var(--s4)}
+@media (min-width:700px){.contatti__grid{grid-template-columns:1fr 1fr}}
+.card{background:var(--sfondo);border:1px solid var(--bordo);border-radius:var(--r-lg);padding:var(--s5)}
+.card h3{margin-bottom:var(--s2)}
+.card p:last-child{margin-bottom:0}
+.card .grande{font-size:1.1875rem;font-weight:600}
+.card address{font-style:normal}
+
+/* Footer */
+.site-foot{background:var(--inchiostro);color:#E8EBEE;padding-block:var(--s6)}
+.site-foot a{color:#fff}
+.site-foot a:hover{color:#fff;text-decoration-thickness:2px}
+.site-foot p{margin:0 0 var(--s3);font-size:.9375rem;line-height:1.7}
+.site-foot .links{display:flex;flex-wrap:wrap;gap:var(--s2) var(--s5);margin-bottom:var(--s4)}
+</style>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "AutoLanding Demo SRL",
+    "url": "https://demo.autolanding.local/",
+    "email": "info@example-domain.it",
+    "telephone": "+39 000 0000000",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Via Esempio 1",
+      "postalCode": "25100",
+      "addressLocality": "Brescia",
+      "addressRegion": "BS",
+      "addressCountry": "IT"
+    },
+    "vatID": "IT00000000000"
+  }
+  </script>
+</head>
+<body>
+<a class="skip-link" href="#main">Vai al contenuto</a>
+
+<header class="site-head">
+  <div class="container site-head__row">
+    <a class="brand" href="#main">AutoLanding</a>
+    <nav class="site-nav" aria-label="Sezioni della pagina">
+      <a href="#chi-siamo">Chi siamo</a>
+      <a href="#cosa-facciamo">Cosa facciamo</a>
+      <a href="#prezzo">Prezzo</a>
+      <a href="#garanzie">Garanzie</a>
+      <a href="#contatti">Contatti</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+
+  <section class="hero" aria-labelledby="titolo-hero">
+    <div class="container">
+      <p class="kicker">AutoLanding · Siti per attività senza sito</p>
+      <h1 id="titolo-hero">Facciamo una cosa sola: il sito semplice e completo per attività che non ce l'hanno.</h1>
+      <p class="lead">Prepariamo noi il sito della sua attività — nome, servizi, orari, mappa, contatti, in italiano e in inglese — e lo mettiamo online. Lei lo guarda con calma, ci fa correggere quello che non torna, e paga solo se le piace.</p>
+      <div class="hero__cta">
+        <a class="btn btn--primary btn--lg" href="#cosa-facciamo">Come lavoriamo</a>
+        <a class="btn btn--secondary btn--lg" href="#contatti">Contatti e dati societari</a>
+      </div>
+
+      <aside class="in-sintesi" aria-label="Sintesi del servizio">
+        <h2>In sintesi</h2>
+        <ul>
+          <li>Il sito lo prepara un sistema automatico: lo controlla una persona prima di mandarglielo.</li>
+          <li>99€ una volta sola per l'attivazione, poi 19€ al mese con tutto incluso.</li>
+          <li>Guarda il sito gratis prima di pagare. Nessuna carta, nessun impegno.</li>
+          <li>Disdice quando vuole. Se va via, i file del sito li porta con sé.</li>
+        </ul>
+      </aside>
+    </div>
+  </section>
+
+  <section class="section" id="chi-siamo" aria-labelledby="titolo-chi-siamo">
+    <div class="container">
+      <header class="section-head misura">
+        <h2 id="titolo-chi-siamo">Chi siamo</h2>
+      </header>
+      <div class="misura">
+        <p>AutoLanding è una piccola azienda italiana.
+          <!-- MOCK: sostituire --> Abbiamo sede a Roma e siamo una squadra di poche persone:
+          quella che risponde al telefono è la stessa che controlla i siti prima che escano.</p>
+        <p>Il lavoro pesante lo fa un sistema costruito da noi: prende i dati pubblici della sua attività,
+          scrive la pagina in italiano e in inglese, controlla che orari, indirizzi e numeri siano
+          formattati come si deve.</p>
+        <div class="chiaro">
+          <p>Detto senza giri di parole: <strong>il sito lo prepara un sistema automatico, ma lo controlla
+            una persona prima di mandarglielo.</strong> Un nome sbagliato o un orario sbagliato non devono
+            mai arrivare fino a lei. Quando riceve un sito nostro, qualcuno ce l'ha guardato riga per riga.</p>
+        </div>
+        <p>Non siamo un'agenzia: niente riunioni, niente preventivi in tre copie, niente progetti che non
+          finiscono mai. Facciamo una cosa, la facciamo bene e la fatturiamo in modo trasparente.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--alt" id="cosa-facciamo" aria-labelledby="titolo-cosa-facciamo">
+    <div class="container">
+      <header class="section-head misura">
+        <h2 id="titolo-cosa-facciamo">Cosa facciamo — e cosa non facciamo</h2>
+        <p class="lead">Un solo tipo di prodotto: il sito semplice e completo per l'attività che non ce l'hanno.
+          Una pagina chiara che si legge bene dal telefono, in italiano e in inglese per clienti e turisti stranieri.</p>
+      </header>
+      <div class="due-colonne">
+        <div>
+          <h3>Dentro il sito ci sono</h3>
+          <ul>
+            <li>Il nome dell'attività e una descrizione di cosa fa</li>
+            <li>Servizi e foto</li>
+            <li>Orari di apertura</li>
+            <li>Mappa e indicazioni per arrivare</li>
+            <li>Domande frequenti e modulo di contatto</li>
+            <li>Footer legale con i dati della sua attività</li>
+          </ul>
+          <h3>Nel canone mensile è incluso tutto</h3>
+          <ul>
+            <li>Hosting e gestione del dominio</li>
+            <li>Aggiornamenti: ce li scrive, li facciamo noi</li>
+            <li>La versione in inglese</li>
+            <li>Supporto via email e telefono</li>
+            <li>Fattura elettronica</li>
+          </ul>
+        </div>
+        <div>
+          <h3>Cosa non facciamo</h3>
+          <p>Meglio dirlo subito, così valuta se il servizio fa per lei: niente siti di tante pagine,
+            niente prenotazioni online, niente menu interattivi, niente pannelli per modificare il sito
+            da soli. Le correzioni e le aggiunte ce le manda per email e le facciamo noi, incluse nel canone.</p>
+          <p>Se le serve qualcosa di più di una pagina ben fatta, questo non è il servizio giusto:
+            meglio saperlo ora che tra sei mesi.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="prezzo" aria-labelledby="titolo-prezzo">
+    <div class="container">
+      <header class="section-head misura">
+        <h2 id="titolo-prezzo">Perché costa così poco</h2>
+      </header>
+      <div class="misura">
+        <p>Il 90% del lavoro lo fa il sistema che abbiamo costruito: genera la pagina, la traduce,
+          controlla i dati. Il restante lo facciamo a mano noi: revisione del sito, correzioni, telefono.
+          Questo è l'intero costo del lavoro, e il prezzo lo riflette.</p>
+        <dl class="prezzo-box">
+          <div>
+            <dt>Attivazione, una volta sola</dt>
+            <dd>99€</dd>
+          </div>
+          <div>
+            <dt>Poi, ogni mese <small>tutto compreso</small></dt>
+            <dd>19€<small>/mese</small></dd>
+          </div>
+        </dl>
+        <p>Per confronto: con un'agenzia un sito di solito parte da 1.500 euro, perché a pesare sul
+          prezzo è soprattutto il tempo di incontri e revisioni. Noi quelle voci non le abbiamo:
+          niente incontri, niente brief, nessun vincolo annuale.</p>
+        <p>Non è una promozione: non ci sono sconti in scadenza né listini che cambiano.
+          È il prezzo per tutti, scritto qui e nelle condizioni di servizio.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--alt" id="garanzie" aria-labelledby="titolo-garanzie">
+    <div class="container">
+      <header class="section-head misura">
+        <h2 id="titolo-garanzie">Le tre garanzie</h2>
+        <p class="lead">Sono le regole con cui lavoriamo, non promesse di lampione. Stanno anche nelle condizioni di servizio.</p>
+      </header>
+      <div class="garanzie__grid">
+        <article class="garanzia">
+          <h3>Guarda prima di pagare</h3>
+          <p>Quando le scriviamo, il sito della sua attività è già online: lo apre dal telefono e lo
+            valuta con calma. Nessuna carta di credito per vederlo, nessun impegno. Se non le piace,
+            qui finisce e non la ricontattiamo più.</p>
+        </article>
+        <article class="garanzia">
+          <h3>Disdice quando vuole</h3>
+          <p>Nessun vincolo annuale: il canone è mensile e si disdice da un giorno all'altro, senza penali.
+            Il sito resta attivo fino alla fine del mese pagato, poi viene disattivato. È scritto prima,
+            non dopo.</p>
+        </article>
+        <article class="garanzia">
+          <h3>Il contenuto resta suo</h3>
+          <p>Foto, testi e menu che ci manda restano di sua proprietà. E se un giorno va via, le mandiamo
+            i file del sito in un archivio: lo può portare dove vuole. Un servizio senza porta d'uscita
+            non è un contratto, è una gabbia.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="faq" aria-labelledby="titolo-faq">
+    <div class="container">
+      <header class="section-head misura">
+        <h2 id="titolo-faq">Domande che ci fanno spesso</h2>
+      </header>
+      <div class="faq">
+        <details>
+          <summary>Come fate ad avere i dati della mia attività?</summary>
+          <div class="risposta">
+            <p>Da fonti pubbliche: Google Maps, elenchi pubblici, la pagina o il sito dell'attività se esistono.
+              Non compriamo liste e non inventiamo indirizzi. Come usiamo questi dati — e come farli cancellare —
+              lo spieghiamo nella <a href="privacy.html">privacy policy</a>.</p>
+          </div>
+        </details>
+        <details>
+          <summary>Devo pagare qualcosa per guardare il sito?</summary>
+          <div class="risposta">
+            <p>No. Il sito è già online e si guarda gratis, senza carta di credito. Paga solo se decide di
+              tenerlo: 99€ una volta e 19€ al mese.</p>
+          </div>
+        </details>
+        <details>
+          <summary>Cosa succede se disdico?</summary>
+          <div class="risposta">
+            <p>Il sito va offline a fine del mese pagato e le mandiamo i file. Nessuna penale,
+              nessuna telefonata per trattenerla.</p>
+          </div>
+        </details>
+        <details>
+          <summary>Le modifiche poi chi le fa?</summary>
+          <div class="risposta">
+            <p>Le facciamo noi, incluse nel canone: ce le scrive per email e il sito viene aggiornato.
+              Non deve installare né imparare nulla.</p>
+          </div>
+        </details>
+        <details>
+          <summary>Chi risponde quando chiamo?</summary>
+          <div class="risposta">
+            <p>Una persona della squadra, negli orari di ufficio. Non un centralino né un robot.</p>
+          </div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--alt" id="contatti" aria-labelledby="titolo-contatti">
+    <div class="container">
+      <header class="section-head misura">
+        <h2 id="titolo-contatti">Contatti</h2>
+        <p class="lead">Per una domanda, un dubbio o per dirci che non le interessa: una mail o una telefonata,
+          e risponde una persona.</p>
+      </header>
+      <div class="contatti__grid">
+        <div class="card">
+          <h3>Scrivere</h3>
+          <!-- MOCK: sostituire -->
+          <p class="grande"><a href="mailto:info@autolanding-demo.it">info@autolanding-demo.it</a></p>
+          <h3>Chiamare</h3>
+          <!-- MOCK: sostituire -->
+          <p class="grande"><a href="tel:+390200000000">02 0000 0000</a></p>
+          <!-- MOCK: sostituire -->
+          <p>Dal lunedì al venerdì, 9:00–18:00. Fuori orario lasci un messaggio: richiamiamo noi.</p>
+        </div>
+        <div class="card">
+          <h3>I nostri dati</h3>
+          <address>
+            <p><strong>AutoLanding Demo SRL</strong>
+            <!-- MOCK: sostituire --> Via Esempio 1, 25100 Brescia (BS)</p>
+            <p>P.IVA IT00000000000</p>
+            <!-- MOCK: sostituire -->
+            <p>Referente che firma le nostre email: Maria Rossi.</p>
+          </address>
+          <p>Trattiamo i dati in modo trasparente: <a href="privacy.html">leggi la privacy policy</a>.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- MOCK: sostituire tutta la sezione legale con i dati reali della società -->
+<footer class="site-foot">
+  <div class="container">
+    <p><strong>AutoLanding Demo SRL</strong> · Via Esempio 1, 25100 Brescia (BS) · P.IVA IT00000000000</p>
+    <p class="links">
+      <a href="privacy.html">Privacy policy</a>
+      <a href="#main">Torna all'inizio</a>
+    </p>
+    <p>Su questo sito non usiamo cookie di tracciamento.</p>
+  </div>
+</footer>
+</body>
+</html>

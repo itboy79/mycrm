@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<!--
+  AutoLanding — asset P2 (GTM §8): one-pager web "Come funziona" del VENDITORE.
+  Uso: SOLO come link in risposta a chi fa domande (token {{link}} nelle risposte umane).
+  MAI come allegato, MAI nella sequenza fredda (D0/D+3/D+7): il prezzo non vive nella sequenza (product-spec §8, GTM §1.2).
+  Design neutro di proposito: NON usa la palette del verticale ristorazione — è la pagina del venditore.
+  MOCK da sostituire prima dell'uso (cerca "MOCK: sostituire"):
+    telefono +39 000 0000000 · ragione sociale AutoLanding Demo SRL · P.IVA IT00000000000
+    indirizzo sede · email · link privacy/cookie · nome brand in header
+  Standard: self-contained (zero JS, zero font esterni), mobile-first, HTML statico puro (spec §6).
+-->
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Come funziona — AutoLanding</title>
+<meta name="description" content="Il sito del tuo locale è già online: lo guardi gratis, lo completi in 2 minuti dal telefono. 99€ una volta sola, poi 19€ al mese tutto compreso, senza vincoli.">
+<meta name="theme-color" content="#ffffff">
+<style>
+/* ============ TOKENS — palette neutra del venditore (mai i colori del verticale) ============ */
+:root{
+  --inchiostro:#1B2733;       /* testo */
+  --muto:#54637A;             /* testo secondario (contrasto ≥ 4.5:1 su bianco e su grigio chiaro) */
+  --bg:#FFFFFF;
+  --bg-alt:#F4F6F9;
+  --accent:#24538F;           /* blu neutro, sobrio */
+  --accent-scuro:#1B4070;
+  --accent-soft:#E9EFF7;
+  --ok:#2E6B45;               /* solo per i segni di spunta */
+  --bordo:#D9E0E9;
+  --font:system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  --s2:8px; --s3:12px; --s4:16px; --s5:24px; --s6:32px; --s7:48px;
+  --r-md:12px; --r-lg:16px; --r-pill:999px;
+  --shadow-1:0 1px 3px rgba(27,39,51,.08);
+}
+/* ============ BASE ============ */
+*,*::before,*::after{box-sizing:border-box}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{transition:none!important;animation:none!important}
+  html{scroll-behavior:auto}
+}
+body{margin:0;background:var(--bg);color:var(--inchiostro);
+  font-family:var(--font);font-size:1.0625rem;line-height:1.65;
+  -webkit-text-size-adjust:100%}
+h1,h2,h3{line-height:1.25;margin:0 0 var(--s3)}
+h1{font-size:clamp(1.75rem,4vw + 1rem,2.5rem);letter-spacing:-.01em}
+h2{font-size:clamp(1.375rem,2.5vw + .75rem,1.75rem);letter-spacing:-.01em}
+h3{font-size:1.1875rem}
+p{margin:0 0 var(--s4)}
+a{color:var(--accent)}
+a:hover{color:var(--accent-scuro)}
+:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.container{width:min(44rem,100% - 2*var(--s4));margin-inline:auto}
+.skip-link{position:absolute;left:-999px;top:0;background:var(--accent);color:#fff;
+  padding:var(--s3) var(--s4);z-index:100;border-radius:0 0 var(--r-md) 0;text-decoration:none}
+.skip-link:focus{left:0;color:#fff}
+
+/* ============ HEADER ============ */
+.site-head{background:var(--bg);border-bottom:1px solid var(--bordo)}
+.brand{margin:0;font-weight:700;font-size:1.125rem;letter-spacing:-.01em;padding-block:var(--s3)}
+
+/* ============ APERTURA ============ */
+.intro{padding-block:var(--s6) var(--s5)}
+.intro .sottotitolo{color:var(--muto);font-size:1.1875rem;line-height:1.55;max-width:36rem}
+
+/* ============ SEZIONI ============ */
+.section{padding-block:var(--s6)}
+.section--alt{background:var(--bg-alt);border-block:1px solid var(--bordo)}
+.section-head{max-width:38rem;margin-bottom:var(--s5)}
+.section-head .sub{color:var(--muto)}
+
+/* ============ 3 PASSI ============ */
+.passi{list-style:none;margin:0;padding:0;display:grid;gap:var(--s4)}
+.passa{display:grid;grid-template-columns:auto 1fr;gap:var(--s4);align-items:start;
+  background:var(--bg);border:1px solid var(--bordo);border-radius:var(--r-lg);
+  padding:var(--s5);box-shadow:var(--shadow-1)}
+.numero{width:40px;height:40px;border-radius:var(--r-pill);background:var(--accent);color:#fff;
+  display:grid;place-items:center;font-weight:700;font-size:1.125rem;font-variant-numeric:tabular-nums}
+.passa h3{margin-bottom:var(--s2)}
+.passa p{margin:0}
+.prezzo{font-weight:700}
+
+/* ============ COSA C'È DENTRO ============ */
+.incluso{list-style:none;margin:0;padding:0;display:grid;gap:var(--s4)}
+.incluso li{display:flex;gap:var(--s3);align-items:flex-start}
+.incluso svg{flex:0 0 auto;width:24px;height:24px;margin-top:3px;color:var(--ok)}
+.incluso strong{display:block}
+.incluso span{color:var(--muto)}
+.onesta{margin-top:var(--s5);background:var(--accent-soft);border:1px solid var(--bordo);
+  border-radius:var(--r-md);padding:var(--s4) var(--s5);font-size:.9375rem;line-height:1.6}
+.onesta p{margin:0}
+
+/* ============ FAQ ============ */
+.faq{max-width:38rem}
+.faq details{background:var(--bg);border:1px solid var(--bordo);border-radius:var(--r-md);
+  margin-bottom:var(--s3);overflow:hidden}
+.faq summary{list-style:none;display:flex;align-items:center;justify-content:space-between;gap:var(--s3);
+  min-height:48px;padding:var(--s3) var(--s4);font-weight:600;cursor:pointer}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary:hover{background:var(--bg-alt)}
+.faq summary svg{flex:0 0 auto;width:20px;height:20px;color:var(--accent);
+  transition:transform .16s ease-out}
+.faq details[open] summary svg{transform:rotate(180deg)}
+.faq .risposta{padding:0 var(--s4) var(--s4)}
+
+/* ============ CTA FINALE ============ */
+.cta{max-width:38rem}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:var(--s2);
+  min-height:48px;padding:var(--s3) var(--s5);border-radius:var(--r-pill);
+  font:600 1rem/1 var(--font);text-decoration:none;cursor:pointer;
+  border:2px solid transparent;transition:background-color .16s ease-out,color .16s ease-out}
+.btn--primary{background:var(--accent);color:#fff}
+.btn--primary:hover{background:var(--accent-scuro);color:#fff}
+.btn--call{min-height:56px;width:100%;font-size:1.0625rem;margin-bottom:var(--s3)}
+@media (min-width:480px){.btn--call{width:auto}}
+.cta-nota{color:var(--muto);font-size:.9375rem;margin:0}
+
+/* ============ FOOTER ============ */
+.site-foot{background:var(--inchiostro);color:#E7EDF4;padding-block:var(--s6);font-size:.9375rem;line-height:1.8}
+.site-foot p{margin:0 0 var(--s2)}
+.site-foot a{color:#E7EDF4}
+.site-foot a:hover{color:#fff}
+.site-foot :focus-visible{outline-color:#fff}
+</style>
+</head>
+<body>
+<a class="skip-link" href="#main">Vai al contenuto</a>
+
+<header class="site-head">
+  <div class="container">
+    <!-- MOCK: sostituire con il nome reale del venditore -->
+    <p class="brand">AutoLanding</p>
+  </div>
+</header>
+
+<main id="main">
+
+  <!-- APERTURA: titolo chiaro, una promessa sola -->
+  <section class="intro" aria-labelledby="titolo">
+    <div class="container">
+      <h1 id="titolo">Il tuo sito è già online: ecco come funziona</h1>
+      <p class="sottotitolo">Niente da immaginare, niente da imparare. Guardi, confermi, decidi.
+        Tre passi, due minuti.</p>
+    </div>
+  </section>
+
+  <!-- TRE PASSI -->
+  <section class="section" aria-labelledby="passi-titolo">
+    <div class="container">
+      <div class="section-head">
+        <h2 id="passi-titolo">Tre passi, due minuti</h2>
+      </div>
+      <ol class="passi">
+        <li class="passa">
+          <span class="numero" aria-hidden="true">1</span>
+          <div>
+            <h3>Il tuo sito è già online: lo guardi gratis</h3>
+            <p>Prima di scriverti, l’abbiamo fatto noi: nome, cucina, indirizzo, orari.
+               Apri il link dal telefono e guarda con i tuoi occhi.
+               Guardarlo non costa niente.</p>
+          </div>
+        </li>
+        <li class="passa">
+          <span class="numero" aria-hidden="true">2</span>
+          <div>
+            <h3>Lo completi in 2 minuti, dal telefono</h3>
+            <p>Controlli i dati, correggi quello che non torna e aggiungi le tue foto.
+               Niente nome utente, niente password. Va benissimo farlo in sala,
+               tra un servizio e l’altro.</p>
+          </div>
+        </li>
+        <li class="passa">
+          <span class="numero" aria-hidden="true">3</span>
+          <div>
+            <h3>Paghi solo se ti piace</h3>
+            <p>Ti piace? Attiviamo il sito: <span class="prezzo">99€ una volta sola</span>,
+               poi <span class="prezzo">19€ al mese tutto compreso</span>, con fattura regolare.
+               Non ti piace? Qui finisce: non hai pagato niente.</p>
+          </div>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- COSA C'È DENTRO IL SITO -->
+  <section class="section section--alt" aria-labelledby="dentro-titolo">
+    <div class="container">
+      <div class="section-head">
+        <h2 id="dentro-titolo">Cosa c’è dentro il sito</h2>
+        <p class="sub">Una pagina sola, chiara e veloce, che risponde al posto del telefono
+          quando tu sei in cucina.</p>
+      </div>
+      <ul class="incluso">
+        <li>
+          <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+          <div><strong>Italiano e inglese</strong>
+            <span>I turisti aprono la pagina e capiscono il menu: l’inglese è incluso, senza costi extra.</span></div>
+        </li>
+        <li>
+          <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+          <div><strong>Gli orari di apertura</strong>
+            <span>Chiarissimi, sempre sotto mano: nessun cliente che arriva e trova il locale chiuso.</span></div>
+        </li>
+        <li>
+          <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+          <div><strong>La mappa</strong>
+            <span>Indicazioni per arrivare: un tocco e il navigatore si apre da solo.</span></div>
+        </li>
+        <li>
+          <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+          <div><strong>Il menu con i prezzi</strong>
+            <span>Piatti e prezzi in chiaro, anche in inglese per i turisti.</span></div>
+        </li>
+        <li>
+          <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+          <div><strong>Il modulo di contatto</strong>
+            <span>Chi vuole informazioni ti scrive direttamente dal sito, senza cercarti altrove.</span></div>
+        </li>
+        <li>
+          <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+          <div><strong>Le prenotazioni al telefono</strong>
+            <span>Un pulsante e il cliente compone il tuo numero: prenoti tu, come sempre.</span></div>
+        </li>
+      </ul>
+      <!-- Onestà obbligatoria (GTM §1.3): i limiti si dicono, non si nascondono -->
+      <div class="onesta">
+        <p><strong>Cosa non c’è:</strong> prenotazioni online automatiche, siti a tante pagine,
+          funzioni complicate. Il sito fa una cosa sola: farti trovare e farti chiamare.
+          Per questo costa 19€ al mese, non di più.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ — 5 domande, risposte corte, <details> nativi -->
+  <section class="section" aria-labelledby="faq-titolo">
+    <div class="container">
+      <div class="section-head">
+        <h2 id="faq-titolo">Domande frequenti</h2>
+      </div>
+      <div class="faq">
+        <details>
+          <summary>Il sito è mio?
+            <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></summary>
+          <div class="risposta"><p>Sì. Le foto, i testi e il menu che metti tu restano tuoi,
+            e sta scritto nelle condizioni. Se un giorno vai via, ti consegniamo il file del sito:
+            lo porti dove vuoi.</p></div>
+        </details>
+        <details>
+          <summary>Cosa succede se smetto di pagare?
+            <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></summary>
+          <div class="risposta"><p>Nessun vincolo: disdici quando vuoi, anche di mese in mese,
+            senza penali. Il sito si disattiva a fine del periodo pagato e ti mandiamo il file.</p></div>
+        </details>
+        <details>
+          <summary>Ci sono vincoli?
+            <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></summary>
+          <div class="risposta"><p>No. Nessun contratto a tempo, nessuna penale d’uscita.
+            Paghi mese per mese e smetti quando vuoi.</p></div>
+        </details>
+        <details>
+          <summary>Come si paga?
+            <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></summary>
+          <div class="risposta"><p>Con carta o bonifico, come preferisci.
+            Ogni pagamento ha la sua fattura elettronica regolare.</p></div>
+        </details>
+        <details>
+          <summary>Chi lo aggiorna?
+            <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></summary>
+          <div class="risposta"><p>Noi. Orari, menu, prezzi: ci scrivi una mail o ci chiami
+            e aggiorniamo noi. Gli aggiornamenti sono inclusi nei 19€ al mese.</p></div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA FINALE -->
+  <section class="section section--alt" aria-labelledby="cta-titolo">
+    <div class="container">
+      <div class="cta">
+        <h2 id="cta-titolo">Vuoi rivederlo? È dove l’hai lasciato</h2>
+        <p>Il sito del tuo locale è nel link che ti abbiamo mandato per email:
+          <strong>riapri la mail e tocca il link</strong>. Due minuti e hai finito.</p>
+        <!-- MOCK: sostituire con il numero reale del venditore (href tel: + testo visibile) -->
+        <a class="btn btn--primary btn--call" href="tel:+390000000000">Chiama lo 000 0000000</a>
+        <p class="cta-nota">Hai un dubbio? Chiama e chiedi pure: nessun impegno,
+          nessun contratto da firmare al telefono.</p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- FOOTER LEGALE -->
+<footer class="site-foot">
+  <div class="container">
+    <!-- MOCK: sostituire tutti i dati aziendali -->
+    <p><strong>AutoLanding Demo SRL</strong> · Via Esempio 1, 25100 Brescia (BS) · P.IVA IT00000000000</p>
+    <p><a href="/privacy/">Privacy policy</a> · <a href="/cookie/">Cookie policy</a> ·
+       <a href="mailto:info@esempio.it">info@esempio.it</a></p>
+    <p>© 2026 AutoLanding Demo SRL. Tutti i diritti riservati.</p>
+  </div>
+</footer>
+
+</body>
+</html>

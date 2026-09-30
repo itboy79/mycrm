@@ -1,0 +1,83 @@
+slug: fabbri-impianti-brescia
+stato_pipeline: published
+verticale: artigiani
+nome_attivita: Fabbri Impianti
+ragione_sociale: FABBRI IMPIANTI DI FABBRI LUCA
+categoria: Idraulico
+citta: Brescia
+cap: '25100'
+indirizzo: Via Millepiedi 22, 25100 Brescia (BS)
+telefono: +39 333 5557788
+email: info@fabbriimpianti-brescia.it
+sito_esistente: false
+orari:
+- giorni: lun-ven
+  apertura: 08:00
+  chiusura: '18:00'
+- giorni: sab
+  apertura: 08:00
+  chiusura: '12:00'
+servizi:
+- Pronto intervento perdite e allagamenti
+- Scarichi otturati
+- Caldaie e scaldacqua
+descrizione: 'Impianti idraulici e termici a Brescia: interventi rapidi, preventivi chiari.'
+foto_profilo_url: https://picsum.photos/seed/fabbri/1200/800
+zona_intervento:
+- Brescia
+- Roncadelle
+- Castenedolo
+disponibilita_urgente: true
+garanzia_lavori: 12 mesi su manodopera
+recensioni:
+  media: 4.5
+  numero: 38
+fonte: google-maps
+confidence:
+  ragione_sociale: high
+  orari: medium
+suppression: false
+history:
+- stato: scouted
+  data: '2026-09-06T12:00:00+02:00'
+  autore: fixture
+  nota: fixture verticale artigiani
+- stato: generated
+  data: '2026-09-18T03:02:06+00:00'
+  autore: mock-owner-review
+  nota: pilot verticali 2-3
+- stato: approved
+  data: '2026-09-18T03:02:06+00:00'
+  autore: mock-owner-review
+  nota: pilot verticali 2-3
+- stato: enriched
+  data: '2026-09-18T03:00:00+00:00'
+  autore: test
+  nota: 'reset pilot: flusso legittimo enriched→generated→approved'
+- stato: invalid
+  data: '2026-09-18T03:02:43+00:00'
+  autore: ciclo
+  nota: 'validazione fallita: index.html: anchor interno rotto #menu; index.html: anchor interno rotto
+    #menu'
+- stato: enriched
+  data: '2026-09-18T03:20:00+00:00'
+  autore: test
+  nota: 'reset: template corretti (anchor+assets), si rigenera'
+- stato: generated
+  data: '2026-09-18T03:05:08+00:00'
+  autore: ciclo
+  nota: 'landing generata e validata (mock: copy incluso nei dati)'
+- stato: approved
+  data: '2026-09-18T03:05:08+00:00'
+  autore: mock-owner-review
+  nota: pilot verticali
+- stato: published
+  data: '2026-09-18T03:05:08+00:00'
+  autore: engine.deploy
+  nota: deploy local su https://fabbri-impianti-brescia.demo.autolanding.local, demo scade 2026-10-02T03:05:08+00:00
+live_url: https://fabbri-impianti-brescia.demo.autolanding.local
+deployed_at: '2026-09-18T03:05:08+00:00'
+demo_expires_at: '2026-10-02T03:05:08+00:00'
+token_completa: cc1a595d-ffe5-4f04-af83-3306d06efba6
+token_tipo: demo
+token_emesso_at: '2026-09-18T03:05:08+00:00'

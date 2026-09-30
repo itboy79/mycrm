@@ -1,0 +1,102 @@
+slug: osteria-del-ponte-brescia
+stato_pipeline: active
+verticale: ristorazione
+nome_attivita: Osteria del Ponte
+ragione_sociale: OSTERIA DEL PONTE DI ROSSI MARIO
+categoria: Ristorante italiano
+citta: Brescia
+cap: '25100'
+indirizzo: Corso Esempio 10, 25100 Brescia
+telefono: +39 030 5550000
+email: info@osteria-del-ponte-brescia.example.it
+sito_esistente: false
+orari:
+- giorni: mar-dom
+  apertura: '12:00'
+  chiusura: '14:30'
+- giorni: ven-sab
+  apertura: '19:00'
+  chiusura: '22:30'
+servizi:
+- Cucina tipica
+- Asporto
+- Menu vegetariano
+- Sale private
+descrizione: Ora anche menu degustazione del venerdì.
+foto_profilo_url: https://picsum.photos/seed/osteria-del-ponte-brescia/1200/800
+recensioni:
+  media: 4.2
+  numero: 40
+fonte: google-maps
+confidence:
+  ragione_sociale: high
+  orari: medium
+  servizi: guess
+suppression: false
+history:
+- stato: scouted
+  data: '2026-08-30T19:56:10+00:00'
+  autore: ciclo-scout-mock
+  nota: lead FINTO per pilot mock (--scout-mock)
+- stato: enriched
+  data: '2026-08-30T19:56:10+00:00'
+  autore: ciclo-scout-mock
+  nota: enrichment simulato (dati già completi nel mock)
+- stato: generated
+  data: '2026-08-30T19:56:10+00:00'
+  autore: ciclo
+  nota: 'landing generata e validata (mock: copy incluso nei dati)'
+- stato: approved
+  data: '2026-08-30T19:56:18+00:00'
+  autore: mock-owner-review
+  nota: batch approvata dal proprietario (simulazione pilot mock)
+- stato: published
+  data: '2026-08-30T19:56:18+00:00'
+  autore: engine.deploy
+  nota: deploy local su https://osteria-del-ponte-brescia.demo.autolanding.local, demo scade 2026-09-13T19:56:18+00:00
+- stato: contacted
+  data: '2026-08-30T19:56:18+00:00'
+  autore: engine.outreach
+  nota: 'sequenza mock avviata (v1), ESP: mock'
+- stato: completing
+  data: '2026-08-30T19:56:39+00:00'
+  autore: wizard-web
+  nota: il lead ha aperto il wizard (web)
+- stato: completing
+  data: '2026-08-30T19:56:39+00:00'
+  autore: engine.deploy
+  nota: redeploy local su https://osteria-del-ponte-brescia.demo.autolanding.local
+- stato: completed
+  data: '2026-08-30T19:56:39+00:00'
+  autore: wizard-web
+  nota: dati confermati, sito rigenerato e ridistribuito
+- stato: paid
+  data: '2026-08-30T19:57:21+00:00'
+  autore: stripe-webhook
+  nota: pagamento carta 99€ confermato (rif cs_pilot_001)
+- stato: active
+  data: '2026-08-30T19:57:21+00:00'
+  autore: stripe-webhook
+  nota: 'attivato: noindex rimosso, crediti venditore nel footer, fattura emessa'
+- stato: active
+  data: '2026-08-30T19:57:21+00:00'
+  autore: engine.deploy
+  nota: redeploy local su https://osteria-del-ponte-brescia.demo.autolanding.local
+- stato: active
+  data: '2026-08-30T19:57:21+00:00'
+  autore: wizard-web
+  nota: dati aggiornati e ridistribuiti (già attivo)
+live_url: https://osteria-del-ponte-brescia.demo.autolanding.local
+deployed_at: '2026-08-30T19:57:21+00:00'
+demo_expires_at: '2026-09-13T19:56:18+00:00'
+token_completa: 884d4a08-a164-4744-b2f7-5638c56a3818
+token_tipo: modifiche
+token_emesso_at: '2026-08-30T19:57:21+00:00'
+contacted_at: '2026-08-30T19:56:18+00:00'
+completato_via: web
+completato_at: '2026-08-30T19:57:21+00:00'
+pagato:
+  metodo: carta
+  importo: '99'
+  data: '2026-08-30T19:57:21+00:00'
+  rif: cs_pilot_001

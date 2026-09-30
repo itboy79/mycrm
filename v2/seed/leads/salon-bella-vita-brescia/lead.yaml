@@ -1,0 +1,78 @@
+slug: salon-bella-vita-brescia
+stato_pipeline: published
+verticale: saloni
+nome_attivita: Salon Bella Vita
+ragione_sociale: BELLA VITA SNC
+categoria: Parrucchiere donna uomo
+citta: Brescia
+cap: '25100'
+indirizzo: Corso Cavour 8, 25100 Brescia (BS)
+telefono: +39 030 5554321
+email: info@salonbellavita-brescia.it
+sito_esistente: false
+orari:
+- giorni: mar-sab
+  apertura: 09:00
+  chiusura: '18:30'
+servizi:
+- Taglio e piega
+- Colore e meches
+- Acconciature sposa ed eventi
+descrizione: 'Salone di acconciatura nel centro di Brescia: taglio, colore e acconciature per sposa.'
+foto_profilo_url: https://picsum.photos/seed/bellavita/1200/800
+foto_gallery:
+- https://picsum.photos/seed/bv1/1200/800
+- https://picsum.photos/seed/bv2/1200/800
+- https://picsum.photos/seed/bv3/1200/800
+recensioni:
+  media: 4.7
+  numero: 64
+fonte: google-maps
+confidence:
+  ragione_sociale: high
+  orari: medium
+suppression: false
+history:
+- stato: scouted
+  data: '2026-09-06T12:00:00+02:00'
+  autore: fixture
+  nota: fixture verticale saloni
+- stato: generated
+  data: '2026-09-18T03:02:06+00:00'
+  autore: mock-owner-review
+  nota: pilot verticali 2-3
+- stato: approved
+  data: '2026-09-18T03:02:06+00:00'
+  autore: mock-owner-review
+  nota: pilot verticali 2-3
+- stato: enriched
+  data: '2026-09-18T03:00:00+00:00'
+  autore: test
+  nota: 'reset pilot: flusso legittimo enriched→generated→approved'
+- stato: invalid
+  data: '2026-09-18T03:02:43+00:00'
+  autore: ciclo
+  nota: 'validazione fallita: index.html: anchor interno rotto #menu; index.html: anchor interno rotto
+    #menu'
+- stato: enriched
+  data: '2026-09-18T03:20:00+00:00'
+  autore: test
+  nota: 'reset: template corretti (anchor+assets), si rigenera'
+- stato: generated
+  data: '2026-09-18T03:05:08+00:00'
+  autore: ciclo
+  nota: 'landing generata e validata (mock: copy incluso nei dati)'
+- stato: approved
+  data: '2026-09-18T03:05:08+00:00'
+  autore: mock-owner-review
+  nota: pilot verticali
+- stato: published
+  data: '2026-09-18T03:05:08+00:00'
+  autore: engine.deploy
+  nota: deploy local su https://salon-bella-vita-brescia.demo.autolanding.local, demo scade 2026-10-02T03:05:08+00:00
+live_url: https://salon-bella-vita-brescia.demo.autolanding.local
+deployed_at: '2026-09-18T03:05:08+00:00'
+demo_expires_at: '2026-10-02T03:05:08+00:00'
+token_completa: d175d2d8-9aa9-4583-bf81-8eef41f980f9
+token_tipo: demo
+token_emesso_at: '2026-09-18T03:05:08+00:00'

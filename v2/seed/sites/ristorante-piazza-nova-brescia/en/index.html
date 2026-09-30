@@ -1,0 +1,568 @@
+
+
+
+<!DOCTYPE html>
+<!--
+  AutoLanding — verticale ristorazione · pagina generata da template/index.html.j2
+  Lingua: en (en/index.html) · Stato: demo noindex
+  Note produzione: font woff2 self-host (max 2 pesi/famiglia, framework §2.4), foto lead AVIF/WebP,
+  submit del form gestito dall'engine. Dati mancanti marcati "[da completare]", mai inventati.
+-->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ristorante Piazza Nova · Restaurant in Brescia</title>
+<meta name="description" content="Ristorante Piazza Nova a Brescia: cucina di stagione e accoglienza da casa.">
+<meta name="robots" content="noindex, nofollow"><!-- stato demo: rimosso all'attivazione (paid) -->
+<link rel="canonical" href="https://ristorante-piazza-nova-brescia.demo.autolanding.local/en/">
+<link rel="alternate" hreflang="it" href="https://ristorante-piazza-nova-brescia.demo.autolanding.local/">
+<link rel="alternate" hreflang="en" href="https://ristorante-piazza-nova-brescia.demo.autolanding.local/en/">
+<link rel="alternate" hreflang="x-default" href="https://ristorante-piazza-nova-brescia.demo.autolanding.local/">
+<link rel="preload" as="image" href="https://picsum.photos/seed/ristorante-piazza-nova-brescia/1200/800" fetchpriority="high">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,600;1,600&family=Source+Sans+3:wght@400;600&display=swap" rel="stylesheet">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Restaurant", "address": {"@type": "PostalAddress", "addressCountry": "IT", "addressLocality": "Brescia", "postalCode": "25100", "streetAddress": "Corso Esempio 14, 25100 Brescia"}, "aggregateRating": {"@type": "AggregateRating", "ratingValue": 4.2, "reviewCount": 92}, "email": "info@ristorante-piazza-nova-brescia.example.it", "hasMenu": "https://ristorante-piazza-nova-brescia.demo.autolanding.local/en/#menu", "image": "https://picsum.photos/seed/ristorante-piazza-nova-brescia/1200/800", "name": "Ristorante Piazza Nova", "openingHoursSpecification": [{"@type": "OpeningHoursSpecification", "closes": "14:30", "dayOfWeek": ["Tuesday"], "opens": "12:00"}, {"@type": "OpeningHoursSpecification", "closes": "14:30", "dayOfWeek": ["Wednesday"], "opens": "12:00"}, {"@type": "OpeningHoursSpecification", "closes": "14:30", "dayOfWeek": ["Thursday"], "opens": "12:00"}, {"@type": "OpeningHoursSpecification", "closes": "14:30", "dayOfWeek": ["Friday"], "opens": "12:00"}, {"@type": "OpeningHoursSpecification", "closes": "22:30", "dayOfWeek": ["Friday"], "opens": "19:00"}, {"@type": "OpeningHoursSpecification", "closes": "14:30", "dayOfWeek": ["Saturday"], "opens": "12:00"}, {"@type": "OpeningHoursSpecification", "closes": "22:30", "dayOfWeek": ["Saturday"], "opens": "19:00"}, {"@type": "OpeningHoursSpecification", "closes": "14:30", "dayOfWeek": ["Sunday"], "opens": "12:00"}], "telephone": "+39 030 5550004", "url": "https://ristorante-piazza-nova-brescia.demo.autolanding.local/en/"}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "acceptedAnswer": {"@type": "Answer", "text": ""}, "name": "Do I need to book a table?"}, {"@type": "Question", "acceptedAnswer": {"@type": "Answer", "text": ""}, "name": "What are your opening hours?"}, {"@type": "Question", "acceptedAnswer": {"@type": "Answer", "text": ""}, "name": "Where exactly are you located?"}, {"@type": "Question", "acceptedAnswer": {"@type": "Answer", "text": ""}, "name": "How can I contact you?"}, {"@type": "Question", "acceptedAnswer": {"@type": "Answer", "text": ""}, "name": "Do you offer takeaway or delivery?"}, {"@type": "Question", "acceptedAnswer": {"@type": "Answer", "text": ""}, "name": "Is there parking?"}, {"@type": "Question", "acceptedAnswer": {"@type": "Answer", "text": ""}, "name": "Do you have gluten-free options?"}, {"@type": "Question", "acceptedAnswer": {"@type": "Answer", "text": ""}, "name": "Do you accept card payments?"}]}</script><style>
+/* ============ TOKENS (wiki/product/03-design.md §2 · vertical.yaml design) ============ */
+:root{
+  --terracotta:#A63A24; --terracotta-scuro:#8C2F1C; --terracotta-soft:#F6E3DD;
+  --crema:#FBF4E9; --crema-scuro:#F3E8D8; --bianco-caldo:#FFFDF9;
+  --carbone:#2A211C; --marrone-muto:#6B5E55;
+  --oliva:#5C6B3C; --oliva-chiaro:#EDEFE0;
+  --oro:#C9972F; --oro-testo:#8A6420;
+  --rosso-errore:#B3261E; --rosso-bg:#F9E5E3;
+  --bordo:#E5D8C4;
+  --font-head:"Fraunces",Georgia,"Times New Roman",serif;
+  --font-body:"Source Sans 3",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --s1:4px; --s2:8px; --s3:12px; --s4:16px; --s5:24px; --s6:32px; --s7:48px; --s8:64px; --s9:96px;
+  --pad-section:var(--s7);
+  --r-sm:8px; --r-md:14px; --r-lg:20px; --r-pill:999px;
+  --shadow-1:0 1px 3px rgba(42,33,28,.08);
+  --shadow-2:0 6px 20px rgba(42,33,28,.10);
+  --btn-md:48px; --btn-lg:56px;
+}
+@media (min-width:768px){:root{--pad-section:var(--s8)}}
+/* ============ BASE ============ */
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:9.5rem}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{transition:none!important;animation:none!important}
+}
+body{margin:0;background:var(--crema);color:var(--carbone);
+  font-family:var(--font-body);font-size:1.0625rem;line-height:1.6;
+  -webkit-text-size-adjust:100%}
+img{max-width:100%;display:block}
+h1,h2,h3{font-family:var(--font-head);font-weight:600;line-height:1.2;margin:0 0 var(--s4)}
+h1{font-size:clamp(2.375rem,6vw + 1.25rem,3.75rem);letter-spacing:-.01em}
+h2{font-size:clamp(1.75rem,3vw + 1rem,2.25rem);letter-spacing:-.01em}
+h3{font-size:1.25rem;line-height:1.3}
+p{margin:0 0 var(--s4)}
+a{color:var(--terracotta)}
+a:hover{color:var(--terracotta-scuro)}
+:focus-visible{outline:3px solid var(--terracotta);outline-offset:2px}
+.hero :focus-visible,.site-head :focus-visible,.demo-banner :focus-visible{outline-color:var(--crema)}
+.container{width:min(72rem,100% - 2*var(--s4));margin-inline:auto}
+.skip-link{position:absolute;left:-999px;top:0;background:var(--terracotta);color:#fff;
+  padding:var(--s3) var(--s4);z-index:100;border-radius:0 0 var(--r-sm) 0;text-decoration:none}
+.skip-link:focus{left:0;color:#fff}
+
+/* ============ BOTTONI (48/56px, target touch >= 44px) ============ */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:var(--s2);
+  min-height:var(--btn-md);padding:var(--s3) var(--s5);border-radius:var(--r-pill);
+  font:600 1rem/1 var(--font-body);letter-spacing:.01em;text-decoration:none;cursor:pointer;
+  border:2px solid transparent;transition:background-color .16s ease-out,color .16s ease-out,border-color .16s ease-out,transform .16s ease-out}
+.btn:active{transform:translateY(1px)}
+.btn--primary{background:var(--terracotta);color:#fff}
+.btn--primary:hover{background:var(--terracotta-scuro);color:#fff}
+.btn--secondary{background:transparent;color:var(--terracotta);border-color:var(--terracotta)}
+.btn--secondary:hover{background:var(--terracotta-soft);color:var(--terracotta-scuro)}
+.btn--ghost{background:rgba(42,33,28,.30);color:var(--crema);border-color:rgba(251,244,233,.75)}
+.btn--ghost:hover{background:rgba(42,33,28,.48);color:#fff}
+.btn--lg{min-height:var(--btn-lg);font-size:1.0625rem;width:100%}
+.btn--sm{min-height:40px;padding:var(--s2) var(--s4);font-size:.9375rem}
+.btn[disabled],.btn[aria-disabled="true"]{opacity:.5;cursor:not-allowed}
+@media (min-width:768px){.btn--lg{width:auto}}
+
+/* ============ BADGE ============ */
+.badge{display:inline-flex;align-items:center;gap:4px;padding:2px 10px;border-radius:var(--r-pill);
+  font-size:.875rem;font-weight:600;line-height:1.5}
+.badge--caratt{background:var(--oliva-chiaro);color:var(--oliva)}
+.badge--allergene{background:transparent;color:var(--oliva);border:1px solid var(--oliva)}
+.badge--opzione{background:var(--oliva-chiaro);color:var(--oliva);font-weight:400}
+.badge--stato{background:var(--oliva-chiaro);color:var(--oliva)}
+.badge--chiuso{background:var(--crema-scuro);color:var(--marrone-muto)}
+.badge--draft{background:var(--crema-scuro);color:var(--oro-testo);border:1px dashed var(--oro-testo)}
+
+/* ============ TOP: DEMO BANNER + HEADER ============ */
+.top{position:sticky;top:0;z-index:50}
+.demo-banner{display:flex;flex-wrap:wrap;align-items:center;gap:var(--s2) var(--s4);
+  background:var(--carbone);color:var(--crema);padding:var(--s2) var(--s4)}
+.demo-banner p{margin:0;font-size:.9375rem;line-height:1.45;flex:1 1 auto}
+.demo-banner strong{color:#fff}
+.demo-banner .fino{color:var(--oro);white-space:nowrap}
+.demo-banner .btn{flex:0 0 auto}
+.demo-banner__close{background:none;border:0;color:var(--crema);font-size:1.25rem;line-height:1;
+  min-width:44px;min-height:44px;cursor:pointer;border-radius:var(--r-sm)}
+.demo-banner__close:hover{color:#fff}
+.site-head{background:var(--crema);border-bottom:1px solid var(--bordo)}
+.site-head__row{display:flex;align-items:center;justify-content:space-between;gap:var(--s3);
+  padding-block:var(--s2)}
+.brand{font-family:var(--font-head);font-weight:600;font-size:1.125rem;color:var(--carbone);
+  text-decoration:none;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.brand:hover{color:var(--terracotta)}
+.lang{display:flex;border:1.5px solid var(--terracotta);border-radius:var(--r-pill);overflow:hidden;flex:0 0 auto}
+.lang a{padding:6px 14px;font-size:.875rem;font-weight:600;text-decoration:none;color:var(--terracotta);min-height:32px;display:inline-flex;align-items:center}
+.lang a[aria-current="true"]{background:var(--terracotta);color:#fff}
+.lang a:not([aria-current="true"]):hover{background:var(--terracotta-soft)}
+.anchor-nav{border-top:1px solid var(--bordo)}
+.anchor-nav__scroll{display:flex;gap:var(--s2);overflow-x:auto;padding:var(--s1) var(--s4);
+  -webkit-overflow-scrolling:touch;scrollbar-width:none}
+.anchor-nav__scroll::-webkit-scrollbar{display:none}
+.anchor-nav a{flex:0 0 auto;padding:10px 14px;font-weight:600;font-size:.9375rem;
+  color:var(--carbone);text-decoration:none;border-radius:var(--r-sm);min-height:44px;display:inline-flex;align-items:center}
+.anchor-nav a:hover{color:var(--terracotta);background:var(--terracotta-soft)}
+@media (min-width:768px){.anchor-nav__scroll{justify-content:center}}
+
+/* ============ HERO ============ */
+.hero{position:relative;display:flex;align-items:flex-end;min-height:min(82svh,760px);
+  background:var(--carbone);color:var(--crema)}
+.hero__img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.hero__velo{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(42,33,28,.18) 0%,rgba(42,33,28,.06) 35%,rgba(42,33,28,.78) 100%)}
+.hero__content{position:relative;z-index:1;padding-block:var(--s6) var(--s6)}
+.hero__rating{display:flex;align-items:center;gap:6px;margin:0 0 var(--s2);
+  font-weight:600;color:#fff}
+.hero__rating .stella{color:var(--oro)}
+.hero__kicker{margin:0 0 var(--s2);font-weight:600;letter-spacing:.06em;text-transform:uppercase;
+  font-size:.875rem;color:var(--crema-scuro)}
+.hero h1{font-style:italic;color:#fff;margin-bottom:var(--s2)}
+.hero__meta{display:flex;flex-wrap:wrap;align-items:center;gap:var(--s2);margin:0 0 var(--s5);color:var(--crema)}
+.hero__meta .sep{color:var(--oro)}
+.hero__cta{display:flex;flex-direction:column;gap:var(--s3)}
+@media (min-width:480px){.hero__cta{flex-direction:row}}
+
+/* ============ SEZIONI ============ */
+.section{padding-block:var(--pad-section)}
+.section--alt{background:var(--bianco-caldo)}
+.section-head{max-width:44rem;margin-bottom:var(--s6)}
+.section-head .sub{color:var(--marrone-muto);font-size:1.1875rem;line-height:1.55}
+
+/* ---- Menu (prima sezione dopo l'hero: ristorazione §6) ---- */
+.menu-grid{display:grid;gap:var(--s5)}
+@media (min-width:768px){.menu-grid{grid-template-columns:1fr 1fr;max-width:64rem}}
+.menu-card{background:var(--bianco-caldo);border:1px solid var(--bordo);border-radius:var(--r-lg);
+  box-shadow:var(--shadow-1);padding:var(--s5)}
+.menu-card h3{display:flex;align-items:center;gap:var(--s2);margin-bottom:var(--s4)}
+.menu-card h3::after{content:"";flex:1;height:1px;background:var(--bordo)}
+.dish{padding-block:var(--s3);border-bottom:1px dashed var(--bordo)}
+.dish:last-child{border-bottom:0;padding-bottom:0}
+.dish__row{display:flex;align-items:baseline;gap:var(--s2)}
+.dish__name{font-weight:600}
+.dish__leader{flex:1;border-bottom:2px dotted var(--bordo);transform:translateY(-4px)}
+.dish__price{font-variant-numeric:tabular-nums;font-weight:600;color:var(--oro-testo);white-space:nowrap}
+.dish__desc{margin:2px 0 var(--s2);color:var(--marrone-muto);font-size:.9375rem}
+.dish__badges{display:flex;flex-wrap:wrap;gap:6px;margin:0}
+.dish__badges .badge{font-size:.8125rem}
+.menu-note{margin-top:var(--s5);color:var(--marrone-muto);font-size:.9375rem;max-width:44rem}
+.menu-placeholder .dish__name{color:var(--marrone-muto);font-weight:400}
+
+/* ---- Chi siamo ---- */
+.chi-siamo{max-width:44rem}
+
+/* ---- Servizi (max 6) ---- */
+.servizi__grid{display:grid;grid-template-columns:repeat(2,1fr);gap:var(--s4)}
+@media (min-width:480px){.servizi__grid{grid-template-columns:repeat(3,1fr)}}
+.servizio{background:var(--bianco-caldo);border:1px solid var(--bordo);border-radius:var(--r-md);
+  padding:var(--s5) var(--s4);display:flex;flex-direction:column;gap:var(--s2)}
+.servizio svg{width:28px;height:28px;stroke:var(--terracotta);fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.servizio strong{font-weight:600;line-height:1.35}
+
+/* ---- Dove siamo ---- */
+.dove__grid{display:grid;gap:var(--s5)}
+@media (min-width:768px){.dove__grid{grid-template-columns:2fr 3fr}}
+.place-card{background:var(--bianco-caldo);border:1px solid var(--bordo);border-radius:var(--r-lg);
+  box-shadow:var(--shadow-1);padding:var(--s5);display:flex;flex-direction:column;gap:var(--s4)}
+.place-card address{font-style:normal;line-height:1.6}
+.place-card .riga{display:flex;gap:var(--s3);align-items:flex-start}
+.place-card .riga svg{flex:0 0 auto;width:22px;height:22px;stroke:var(--oliva);fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;margin-top:3px}
+.place-card .riga small{display:block;color:var(--marrone-muto)}
+.place-card .azioni{display:flex;flex-direction:column;gap:var(--s3);margin-top:auto}
+@media (min-width:480px){.place-card .azioni{flex-direction:row}}
+.map-facade{position:relative;min-height:280px;border-radius:var(--r-lg);overflow:hidden;
+  border:1px solid var(--bordo);background:var(--oliva-chiaro);
+  display:flex;align-items:center;justify-content:center}
+.map-facade .griglia{position:absolute;inset:0;opacity:.5;
+  background-image:linear-gradient(var(--bordo) 1px,transparent 1px),linear-gradient(90deg,var(--bordo) 1px,transparent 1px);
+  background-size:44px 44px}
+.map-facade button{position:relative;z-index:1;display:inline-flex;align-items:center;gap:var(--s2);
+  background:var(--bianco-caldo);border:1.5px solid var(--terracotta);color:var(--terracotta);
+  border-radius:var(--r-pill);min-height:var(--btn-md);padding:var(--s3) var(--s5);cursor:pointer;
+  font:600 1rem var(--font-body);box-shadow:var(--shadow-2)}
+.map-facade button:hover{background:var(--terracotta-soft)}
+.map-facade svg{width:22px;height:22px;stroke:currentColor;fill:none;stroke-width:1.6}
+.map-facade iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+
+/* ---- Orari ---- */
+.orari-wrap{max-width:34rem}
+.stato-ora{display:inline-flex;align-items:center;gap:8px;margin-bottom:var(--s4)}
+.punto{width:10px;height:10px;border-radius:50%;background:var(--oliva)}
+.stato-ora.chiuso .punto{background:var(--marrone-muto)}
+table.orari{width:100%;border-collapse:collapse;background:var(--bianco-caldo);
+  border:1px solid var(--bordo);border-radius:var(--r-md);overflow:hidden;box-shadow:var(--shadow-1)}
+table.orari th,table.orari td{padding:var(--s3) var(--s4);text-align:left;border-bottom:1px solid var(--bordo)}
+table.orari thead th{background:var(--crema-scuro);font-size:.875rem;text-transform:uppercase;letter-spacing:.05em;color:var(--marrone-muto)}
+table.orari tr:last-child td{border-bottom:0}
+table.orari td.fasce{font-variant-numeric:tabular-nums;font-weight:600}
+table.orari tr.oggi{background:var(--oliva-chiaro)}
+.orari-note{margin-top:var(--s4);color:var(--marrone-muto);font-size:.9375rem}
+
+/* ---- FAQ (details/summary nativi, zero JS) ---- */
+.faq{max-width:44rem}
+.faq details{background:var(--bianco-caldo);border:1px solid var(--bordo);border-radius:var(--r-md);
+  margin-bottom:var(--s3);overflow:hidden}
+.faq summary{list-style:none;display:flex;align-items:center;justify-content:space-between;gap:var(--s3);
+  min-height:48px;padding:var(--s3) var(--s4);font-weight:600;cursor:pointer}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary:hover{background:var(--crema)}
+.faq summary svg{flex:0 0 auto;width:20px;height:20px;stroke:var(--terracotta);fill:none;stroke-width:2;
+  stroke-linecap:round;stroke-linejoin:round;transition:transform .16s ease-out}
+.faq details[open] summary svg{transform:rotate(180deg)}
+.faq .risposta{padding:0 var(--s4) var(--s4);color:var(--carbone)}
+
+/* ---- Contatti ---- */
+.contatti__grid{display:grid;gap:var(--s5)}
+@media (min-width:768px){.contatti__grid{grid-template-columns:3fr 2fr;align-items:start}}
+.form-card{background:var(--bianco-caldo);border:1px solid var(--bordo);border-radius:var(--r-lg);
+  box-shadow:var(--shadow-1);padding:var(--s5)}
+.field{margin-bottom:var(--s4)}
+.field label{display:block;font-weight:600;margin-bottom:var(--s1)}
+.field .help{color:var(--marrone-muto);font-size:.875rem;margin:var(--s1) 0 0}
+.field input,.field textarea{width:100%;min-height:var(--btn-md);padding:var(--s3);font:400 1rem var(--font-body);
+  color:var(--carbone);background:#fff;border:1.5px solid var(--bordo);border-radius:var(--r-sm)}
+.field textarea{min-height:120px;resize:vertical}
+.field input:focus,.field textarea:focus{border-color:var(--terracotta);outline:3px solid var(--terracotta);outline-offset:1px}
+.due-col{display:grid;gap:var(--s4)}
+@media (min-width:480px){.due-col{grid-template-columns:1fr 1fr}}
+.hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+.privacy-note{font-size:.875rem;color:var(--marrone-muto);margin-top:var(--s3)}
+.contact-card{background:var(--terracotta-soft);border:1px solid var(--bordo);border-radius:var(--r-lg);
+  padding:var(--s5);display:flex;flex-direction:column;gap:var(--s4)}
+.contact-card h3{margin:0}
+.contact-card .tel{font-family:var(--font-head);font-size:1.375rem;font-weight:600;color:var(--carbone);
+  text-decoration:none}
+.contact-card .tel:hover{color:var(--terracotta)}
+.contact-card p{margin:0;color:var(--marrone-muto);font-size:.9375rem}
+
+/* ---- Footer ---- */
+.site-foot{background:var(--carbone);color:var(--crema);padding-block:var(--s6)}
+.site-foot a{color:var(--crema)}
+.site-foot a:hover{color:#fff}
+.foot-legal{font-size:.9375rem;line-height:1.7;margin-bottom:var(--s5)}
+.foot-links{display:flex;flex-wrap:wrap;gap:var(--s2) var(--s5);font-size:.9375rem;margin-bottom:var(--s5)}
+.foot-owner{border-top:1px solid rgba(251,244,233,.25);padding-top:var(--s4);
+  display:flex;flex-wrap:wrap;align-items:center;gap:var(--s2) var(--s4);font-size:.9375rem}
+.foot-owner .btn{color:#fff}
+.foot-owner .btn:hover{color:#fff}
+</style>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<div class="top">
+  <div class="demo-banner" id="demo-banner" role="region" aria-label="Notice for the owner">
+    <p><strong>This is your venue&#39;s page.</strong> Fix the details, it takes two minutes.
+</p>
+    <a class="btn btn--primary btn--sm" href="https://demo.autolanding.local/complete?token=">Complete your details</a>
+    <button class="demo-banner__close" type="button" id="demo-banner-close" aria-label="Close notice">×</button>
+  </div>
+
+  <header class="site-head">
+    <div class="container site-head__row">
+      <a class="brand" href="#top">Ristorante Piazza Nova</a>
+      <nav class="lang" aria-label="Site language">        <a href="../" hreflang="it" lang="it">IT</a><a href="#top" aria-current="true">EN</a>      </nav>
+    </div><nav class="anchor-nav" aria-label="Page sections">
+      <div class="anchor-nav__scroll container">
+        <a href="#menu">Menu</a>
+        <a href="#dove-siamo">Find us</a>
+        <a href="#orari">Opening hours</a>
+        <a href="#contatti">Contact</a>
+      </div>
+    </nav>
+  </header>
+</div>
+
+<main id="main">
+
+  <section class="hero" id="top" aria-label="Ristorante Piazza Nova">
+    <img class="hero__img" src="https://picsum.photos/seed/ristorante-piazza-nova-brescia/1200/800" alt="The food of Ristorante Piazza Nova in Brescia" fetchpriority="high" decoding="async">
+    <div class="hero__velo" aria-hidden="true"></div>
+    <div class="hero__content container">
+      <p class="hero__rating"><span class="stella" aria-hidden="true">★</span> 4.2 · 92 reviews on Google</p>
+      <p class="hero__kicker">Restaurant · Brescia</p>
+      <h1>Ristorante Piazza Nova</h1>
+      <p class="hero__meta"><span class="badge badge--caratt">Vegetarian</span> <span class="badge badge--caratt">Parking</span>      </p>
+      <div class="hero__cta">        <a class="btn btn--primary btn--lg" href="tel:+390305550004">Book a table</a>        <a class="btn btn--ghost btn--lg" href="#menu">The menu ↓</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="menu">
+    <div class="container">
+      <header class="section-head">
+        <h2>Our menu</h2>
+        <p class="sub">Prices in euro. For allergies or intolerances just tell us: the kitchen will adjust.</p>
+      </header>
+<div class="menu-grid">
+        <article class="menu-card menu-placeholder">
+          <h3>Our menu <span class="badge badge--draft">[da completare]</span></h3>
+          <div class="dish">
+            <div class="dish__row"><span class="dish__name">Antipasti</span><span class="dish__leader" aria-hidden="true"></span><span class="dish__price">—</span></div>
+          </div>
+          <div class="dish">
+            <div class="dish__row"><span class="dish__name">Primi</span><span class="dish__leader" aria-hidden="true"></span><span class="dish__price">—</span></div>
+          </div>
+          <div class="dish">
+            <div class="dish__row"><span class="dish__name">Secondi</span><span class="dish__leader" aria-hidden="true"></span><span class="dish__price">—</span></div>
+          </div>
+          <div class="dish">
+            <div class="dish__row"><span class="dish__name">Dolci</span><span class="dish__leader" aria-hidden="true"></span><span class="dish__price">—</span></div>
+          </div>
+          <p class="menu-note" style="margin-top:var(--s4)">The full menu is on its way: for today&#39;s specials, call us on the phone.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--alt" id="chi-siamo">
+    <div class="container">
+      <header class="section-head">
+        <h2>About us</h2>
+      </header>
+      <div class="chi-siamo">
+        <p>Ristorante Piazza Nova a Brescia: cucina di stagione e accoglienza da casa.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="servizi">
+    <div class="container">
+      <header class="section-head">
+        <h2>Our services</h2>
+      </header>
+      <div class="servizi__grid">
+        <div class="servizio">          <svg viewBox="0 0 24 24" aria-hidden="true">            <path d="M5 3v7a2 2 0 0 0 2 2v9M9 3v7M7 3v7M15 3c-1.5 1-2.5 3-2.5 5.5 0 2 1 3.5 2.5 3.5V21M17.5 3v18"/>          </svg>
+          <strong>Cucina tipica</strong>
+        </div>
+        <div class="servizio">          <svg viewBox="0 0 24 24" aria-hidden="true">            <path d="M6 8h12l-1 12H7L6 8zM9 8V6a3 3 0 0 1 6 0v2"/>          </svg>
+          <strong>Asporto</strong>
+        </div>
+        <div class="servizio">          <svg viewBox="0 0 24 24" aria-hidden="true">            <path d="M5 3v7a2 2 0 0 0 2 2v9M9 3v7M7 3v7M15 3c-1.5 1-2.5 3-2.5 5.5 0 2 1 3.5 2.5 3.5V21M17.5 3v18"/>          </svg>
+          <strong>Menu vegetariano</strong>
+        </div>
+        <div class="servizio">          <svg viewBox="0 0 24 24" aria-hidden="true">            <path d="M4 13l1.5-4.5A2 2 0 0 1 7.4 7h9.2a2 2 0 0 1 1.9 1.5L20 13M4 13h16v5h-2M4 13v5h2m0 0a2 2 0 1 0 4 0m-4 0a2 2 0 1 1 4 0m4 0a2 2 0 1 0 4 0m-4 0a2 2 0 1 1 4 0"/>          </svg>
+          <strong>Parcheggio</strong>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--alt" id="dove-siamo">
+    <div class="container">
+      <header class="section-head">
+        <h2>How to find us</h2>
+      </header>
+      <div class="dove__grid">
+        <div class="place-card">
+          <address>
+            <div class="riga">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7-5.5-7-11a7 7 0 0 1 14 0c0 5.5-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>
+              <div><strong>Address</strong><br>Corso Esempio 14, 25100 Brescia</div>
+            </div>
+          </address>
+          <div class="riga">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
+            <div><strong>Hours</strong><small>Mon: Closed · Tue–Thu: 12:00–14:30 · Fri–Sat: 12:00–14:30 · 19:00–22:30 · Sun: 12:00–14:30 · <a href="#orari">opening hours</a></small></div>
+          </div>
+          <div class="azioni">
+            <a class="btn btn--secondary" href="https://www.google.com/maps/dir/?api=1&amp;destination=Corso%20Esempio%2014%2C%2025100%20Brescia%2C%2025100%20Brescia" target="_blank" rel="noopener">Get directions</a>
+<a class="btn btn--primary" href="tel:+390305550004">Call us</a>          </div>
+        </div>
+        <div class="map-facade">
+          <div class="griglia" aria-hidden="true"></div>
+          <button type="button" id="map-load" data-maps-q="Corso%20Esempio%2014%2C%2025100%20Brescia%2C%2025100%20Brescia" data-maps-title="Map: Ristorante Piazza Nova, Corso Esempio 14, 25100 Brescia">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7-5.5-7-11a7 7 0 0 1 14 0c0 5.5-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>
+            Load the map
+          </button>
+          <noscript>
+            <iframe src="https://www.google.com/maps?q=Corso%20Esempio%2014%2C%2025100%20Brescia%2C%2025100%20Brescia&amp;output=embed" title="Map: Ristorante Piazza Nova, Corso Esempio 14, 25100 Brescia" loading="lazy"></iframe>
+          </noscript>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="orari">
+    <div class="container">
+      <header class="section-head">
+        <h2>Opening hours</h2>
+      </header>
+      <div class="orari-wrap">
+        <p class="stato-ora" id="stato-ora" role="status"><span class="punto" aria-hidden="true"></span> <span id="stato-ora-testo">Checking…</span></p>
+        <table class="orari">
+          <thead>
+            <tr><th scope="col">Day</th><th scope="col">Hours</th></tr>
+          </thead>
+          <tbody>
+            <tr data-giorno="1 "><th scope="row">Monday</th><td class="fasce">Closed</td></tr>
+            <tr data-giorno="2 3 4 "><th scope="row">Tuesday – Thursday</th><td class="fasce">12:00–14:30</td></tr>
+            <tr data-giorno="5 6 "><th scope="row">Friday – Saturday</th><td class="fasce">12:00–14:30 · 19:00–22:30</td></tr>
+            <tr data-giorno="0 "><th scope="row">Sunday</th><td class="fasce">12:00–14:30</td></tr>
+          </tbody>
+        </table>
+        <p class="orari-note">          Closing day: Monday.        </p>
+        <script type="application/json" id="orari-data">{"aperto": "Open now", "chiuso": "Currently closed", "gruppi": [{"f": [], "g": [1]}, {"f": [["12:00", "14:30"]], "g": [2, 3, 4]}, {"f": [["12:00", "14:30"], ["19:00", "22:30"]], "g": [5, 6]}, {"f": [["12:00", "14:30"]], "g": [0]}]}</script>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--alt" id="faq">
+    <div class="container">
+      <header class="section-head">
+        <h2>Frequently asked questions</h2>
+      </header>
+      <div class="faq">
+        <details>
+          <summary>Do I need to book a table?
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></summary>
+          <div class="risposta"><p>We recommend booking, especially on Fridays, Saturdays and holidays: call us at +39 030 5550004 and we&#39;ll find you a table. On weekday lunches you&#39;ll almost always find a seat without booking.</p></div>
+        </details>
+        <details>
+          <summary>What are your opening hours?
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></summary>
+          <div class="risposta"><p>We&#39;re open mar-dom 12:00-14:30; ven-sab 19:00-22:30. The complete schedule with lunch and dinner shifts is in the Opening hours section of this page.</p></div>
+        </details>
+        <details>
+          <summary>Where exactly are you located?
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></summary>
+          <div class="risposta"><p>You&#39;ll find us at Corso Esempio 14, 25100 Brescia, 25100 Brescia. The interactive map with directions is in the Find us section of this page.</p></div>
+        </details>
+        <details>
+          <summary>How can I contact you?
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></summary>
+          <div class="risposta"><p>The fastest way is calling +39 030 5550004, especially for bookings and takeaway orders. Prefer writing? Use the form in the Contact section or email info@ristorante-piazza-nova-brescia.example.it: we reply within a few hours during opening times.</p></div>
+        </details>
+        <details>
+          <summary>Do you offer takeaway or delivery?
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></summary>
+          <div class="risposta"><p>Yes: call +39 030 5550004 and your order will be ready when you arrive, or arrange delivery in the Brescia area with us.</p></div>
+        </details>
+        <details>
+          <summary>Is there parking?
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></summary>
+          <div class="risposta"><p>You can usually find parking within a short walk of the entrance: the map with directions is in the Find us section of this page.</p></div>
+        </details>
+        <details>
+          <summary>Do you have gluten-free options?
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></summary>
+          <div class="risposta"><p>We can prepare some gluten-free dishes on request: tell us when ordering and we&#39;ll check with the kitchen.</p></div>
+        </details>
+        <details>
+          <summary>Do you accept card payments?
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></summary>
+          <div class="risposta"><p>Yes, we accept major credit and debit cards, as well as cash.</p></div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="contatti">
+    <div class="container">
+      <header class="section-head">
+        <h2>Contact us</h2>
+        <p class="sub">To book a table or order takeaway the fastest way is the phone. Or write to us here: we reply within a few hours.</p>
+      </header>
+      <div class="contatti__grid">
+        <form class="form-card" action="#contatti" method="post">
+          <div class="field">
+            <label for="f-nome">Your name</label>
+            <input id="f-nome" name="nome" type="text" autocomplete="name" required>
+          </div>
+          <div class="due-col">
+            <div class="field">
+              <label for="f-telefono">Phone</label>
+              <input id="f-telefono" name="telefono" type="tel" inputmode="tel" autocomplete="tel" aria-describedby="f-telefono-help">
+              <p class="help" id="f-telefono-help">Only if you&#39;d like us to call you back.</p>
+            </div>
+            <div class="field">
+              <label for="f-email">Email</label>
+              <input id="f-email" name="email" type="email" inputmode="email" autocomplete="email" required>
+            </div>
+          </div>
+          <div class="field">
+            <label for="f-messaggio">Message</label>
+            <textarea id="f-messaggio" name="messaggio" required></textarea>
+          </div>
+          <div class="hp" aria-hidden="true">
+            <label for="f-website">Do not fill in this field</label>
+            <input id="f-website" name="website" type="text" tabindex="-1" autocomplete="off">
+          </div>
+          <button class="btn btn--primary btn--lg" type="submit">Send message</button>
+          <p class="privacy-note">By sending this message you accept the privacy policy: we use your data only to reply to you. <a href="privacy.html">Privacy policy</a></p>
+        </form>
+        <aside class="contact-card">
+          <h3>Book by phone</h3>
+<a class="tel" href="tel:+390305550004">+39 030 5550004</a>          <p>Someone from the staff answers, during opening hours.</p>
+          <h3>Email us</h3>
+          <p><a href="mailto:info@ristorante-piazza-nova-brescia.example.it">info@ristorante-piazza-nova-brescia.example.it</a></p>
+          <p>Corso Esempio 14, 25100 Brescia · <a href="#dove-siamo">map</a></p>
+        </aside>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-foot">
+  <div class="container">
+    <p class="foot-legal">      <strong>RISTORANTE PIAZZA NOVA DI ROSSI MARIO</strong> · Corso Esempio 14, 25100 Brescia · VAT number: <a href="https://demo.autolanding.local/complete?token=">to be completed</a>    </p>
+    <p class="foot-links">
+      <a href="privacy.html">Privacy policy</a>
+      <a href="cookie.html">Cookie policy</a>
+    </p>
+    <div class="foot-owner">
+      <span>Are you the owner? Complete your website details, it takes two minutes.</span>
+      <a class="btn btn--primary btn--sm" href="https://demo.autolanding.local/complete?token=">Complete your details</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* JS vanilla < 1.5 KB: badge aperto/chiuso, mappa facade, chiusura banner. Nessuna dipendenza. */
+(function(){
+  var box=document.getElementById('orari-data');
+  if(box){try{
+    var d=JSON.parse(box.textContent),n=new Date(),g=n.getDay(),m=n.getHours()*60+n.getMinutes(),aperto=false;
+    d.gruppi.forEach(function(gr){if(gr.g.indexOf(g)<0)return;gr.f.forEach(function(f){
+      var a=f[0].split(':'),b=f[1].split(':');
+      if(m>=(+a[0])*60+(+a[1])&&m<(+b[0])*60+(+b[1]))aperto=true;});});
+    var el=document.getElementById('stato-ora');
+    if(el){document.getElementById('stato-ora-testo').textContent=aperto?d.aperto:d.chiuso;
+      if(!aperto)el.classList.add('chiuso');}
+    var tr=document.querySelector('tr[data-giorno~="'+g+'"]');
+    if(tr)tr.classList.add('oggi');
+  }catch(e){}}
+  var btn=document.getElementById('map-load');
+  if(btn){btn.addEventListener('click',function(){
+    var f=document.createElement('iframe');
+    f.src='https://www.google.com/maps?q='+btn.getAttribute('data-maps-q')+'&output=embed';
+    f.title=btn.getAttribute('data-maps-title')||'Map';
+    f.loading='lazy';
+    btn.parentElement.appendChild(f);btn.remove();
+  });}
+  var banner=document.getElementById('demo-banner'),chiudi=document.getElementById('demo-banner-close');
+  if(banner&&chiudi){chiudi.addEventListener('click',function(){banner.remove();});}
+})();
+</script>
+</body>
+</html>

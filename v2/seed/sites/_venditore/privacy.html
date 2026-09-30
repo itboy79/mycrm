@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<!-- BOZZA da far verificare a un legale prima dell'uso reale -->
+<!--
+  AutoLanding — privacy policy del VENDITORE (asset P1 del GTM plan).
+  Copre: trattamento dei dati aziendali pubblici per prospezione B2B (legittimo interesse),
+  dati forniti dai clienti, diritti, conservazione (opposizione o 24 mesi), nessun cookie di tracking.
+  Tutti i valori fittizi sono marcati <!-- MOCK: sostituire -->.
+-->
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Privacy policy · AutoLanding</title>
+<meta name="description" content="Quali dati trattiamo sulle attività che contattiamo, con quali basi legali, per quanto tempo e come esercitare i diritti. In parole leggibili.">
+<style>
+/* ===== Stessa famiglia di design della homepage venditore: neutra, sobria, accessibile. ===== */
+:root{
+  --inchiostro:#1F2833;
+  --testo:#2A333E;
+  --muto:#566069;
+  --sfondo:#FFFFFF;
+  --sfondo-alt:#F4F6F8;
+  --bordo:#DDE2E8;
+  --accento:#1E4E79;
+  --accento-tenue:#E9EFF5;
+  --s1:4px; --s2:8px; --s3:12px; --s4:16px; --s5:24px; --s6:32px; --s7:48px;
+  --r:12px; --r-lg:16px;
+}
+*,*::before,*::after{box-sizing:border-box}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{transition:none!important;animation:none!important}
+  html{scroll-behavior:auto}
+}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--sfondo);color:var(--testo);
+  font-family:system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  font-size:1.0625rem;line-height:1.65;-webkit-text-size-adjust:100%}
+h1,h2,h3{line-height:1.25;margin:0 0 var(--s4);color:var(--inchiostro);font-weight:750;letter-spacing:-.01em}
+h1{font-size:clamp(1.9rem,4.2vw + 1rem,2.7rem)}
+h2{font-size:clamp(1.35rem,2.2vw + .8rem,1.7rem);margin-top:0}
+h3{font-size:1.0625rem;margin-bottom:var(--s2)}
+p{margin:0 0 var(--s4)}
+ul{margin:0 0 var(--s4);padding-left:1.25rem}
+li{margin-bottom:var(--s2)}
+li::marker{color:var(--accento)}
+a{color:var(--accento);text-decoration-thickness:1px;text-underline-offset:3px}
+a:hover{color:var(--inchiostro)}
+:focus-visible{outline:3px solid var(--accento);outline-offset:2px}
+.site-foot :focus-visible{outline-color:#fff}
+.container{width:min(48rem,100% - 2*var(--s4));margin-inline:auto}
+.skip-link{position:absolute;left:-999px;top:0;background:var(--inchiostro);color:#fff;
+  padding:var(--s3) var(--s4);z-index:100;border-radius:0 0 var(--r) 0;text-decoration:none;min-height:44px;display:inline-flex;align-items:center}
+.skip-link:focus{left:0;color:#fff}
+
+.site-head{border-bottom:1px solid var(--bordo)}
+.site-head__row{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:var(--s2) var(--s4);padding-block:var(--s3)}
+.brand{font-weight:750;font-size:1.125rem;color:var(--inchiostro);text-decoration:none;margin:0}
+.brand:hover{color:var(--accento)}
+.site-nav a{display:inline-flex;align-items:center;min-height:44px;padding:var(--s2) var(--s3);
+  font-size:.9375rem;font-weight:600;color:var(--testo);text-decoration:none;border-radius:var(--r)}
+.site-nav a:hover{background:var(--accento-tenue);color:var(--inchiostro)}
+
+.hero{background:var(--sfondo-alt);border-bottom:1px solid var(--bordo);padding-block:clamp(2.5rem,5vw,4rem)}
+.kicker{margin:0 0 var(--s3);font-size:.8125rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muto)}
+.lead{font-size:1.1875rem;line-height:1.6}
+
+.section{padding-block:clamp(2.5rem,5vw,4rem)}
+.chiaro{background:var(--accento-tenue);border:1px solid var(--bordo);border-left:4px solid var(--accento);
+  border-radius:var(--r);padding:var(--s5);margin-bottom:var(--s5)}
+.chiaro p:last-child{margin-bottom:0}
+
+.aggiornata{font-size:.9375rem;color:var(--muto)}
+
+.site-foot{background:var(--inchiostro);color:#E8EBEE;padding-block:var(--s6)}
+.site-foot a{color:#fff}
+.site-foot a:hover{color:#fff;text-decoration-thickness:2px}
+.site-foot p{margin:0 0 var(--s3);font-size:.9375rem;line-height:1.7}
+</style>
+</head>
+<body>
+<a class="skip-link" href="#main">Vai al contenuto</a>
+
+<header class="site-head">
+  <div class="container site-head__row">
+    <a class="brand" href="index.html">AutoLanding</a>
+    <nav class="site-nav" aria-label="Pagine del sito">
+      <a href="index.html">Torna alla home</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+
+  <section class="hero" aria-labelledby="titolo-privacy">
+    <div class="container">
+      <p class="kicker">AutoLanding · Trasparenza</p>
+      <h1 id="titolo-privacy">Privacy policy</h1>
+      <p class="lead">In breve: trattiamo solo dati aziendali pubblici, non li vendiamo a nessuno,
+        e basta una mail per farceli cancellare.</p>
+      <p>Questa pagina spiega quali dati trattiamo su chi gestisce un'attività che contattiamo o che ci
+        affida un sito, per quali motivazioni e come esercitare i suoi diritti. Cerchiamo di scriverla in
+        italiano leggibile; dove citiamo la legge è per essere precisi.</p>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="titolo-titolare">
+    <div class="container">
+      <h2 id="titolo-titolare">Chi è il titolare del trattamento</h2>
+      <p>Il titolare del trattamento è <strong>AutoLanding Demo SRL</strong>
+        <!-- MOCK: sostituire --> con sede in Via Esempio 1, 25100 Brescia (BS),
+        Partita IVA IT00000000000.</p>
+      <p>Per qualsiasi richiesta su dati e privacy:
+        <!-- MOCK: sostituire -->
+        <a href="mailto:privacy@autolanding-demo.it">privacy@autolanding-demo.it</a>.
+        Rispondiamo entro pochi giorni lavorativi.</p>
+    </div>
+  </section>
+
+  <section class="section section--alt" aria-labelledby="titolo-dati">
+    <div class="container">
+      <h2 id="titolo-dati">Quali dati trattiamo</h2>
+
+      <h3>Dati pubblici della sua attività</h3>
+      <p>Quando prepariamo un sito per un'attività, usiamo solo ciò che è già pubblico:</p>
+      <ul>
+        <li>il nome dell'attività;</li>
+        <li>l'indirizzo;</li>
+        <li>i numeri di telefono e gli indirizzi email pubblici;</li>
+        <li>le informazioni pubbliche su cosa fa l'attività.</li>
+      </ul>
+      <p>Li prendiamo da fonti pubbliche: Google Maps, elenchi pubblici, le pagine pubbliche dell'attività.
+        Non compriamo liste, non usiamo i dati personali del titolare oltre a nome e ruolo pubblici,
+        e non indoviniamo indirizzi email.</p>
+
+      <h3>I dati che ci manda lei</h3>
+      <p>Se completa il proprio sito o ci scrive, trattiamo i dati che ci invia: nome e contatti,
+        foto, testi, orari, menu, e i dati che servono per la fattura (ragione sociale, partita IVA,
+        indirizzo).</p>
+      <p>Non chiediamo dati sensibili, cioè informazioni su salute, convinzioni personali o vita privata.
+        Se per errore ce ne arrivano, li cancelliamo.</p>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="titolo-base">
+    <div class="container">
+      <h2 id="titolo-base">Perché li trattiamo</h2>
+      <ul>
+        <li><strong>Per contattare l'attività e proporle il sito.</strong> È il nostro legittimo interesse
+          (art. 6, par. 1, lett. f) del GDPR), ammesso per la prospezione commerciale tra imprese a
+          condizione di usare dati aziendali pubblici, identificare il mittente e lasciare un modo
+          semplice per dire no. È esattamente così che lavoriamo.</li>
+        <li><strong>Per gestire il sito quando diventa cliente.</strong> Esecuzione del contratto
+          (art. 6, par. 1, lett. b).</li>
+        <li><strong>Per emettere le fatture.</strong> Obbligo di legge (art. 6, par. 1, lett. c).</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="section section--alt" aria-labelledby="titolo-opposizione">
+    <div class="container">
+      <h2 id="titolo-opposizione">Come ci facciamo vivi, e come dirci basta</h2>
+      <p>Quando scriviamo a un'attività lo facciamo per email, con mittente identificato: ragione sociale,
+        sede e contatti in fondo a ogni messaggio.</p>
+      <p>In ogni email c'è un link per non ricevere più messaggi. Può anche semplicemente rispondere
+        "no, grazie": per noi è la stessa cosa.</p>
+      <div class="chiaro">
+        <p>L'opposizione viene onorata <strong>subito e per sempre</strong>: l'indirizzo finisce in una
+          lista di esclusione permanente e non riceve più nulla. Nessuna conferma da dare,
+          nessun modulo da compilare, nessun richiamo a distanza di mesi.</p>
+      </div>
+      <p>Se preferisce scriverci, l'indirizzo per l'opposizione è:
+        <!-- MOCK: sostituire -->
+        <a href="mailto:privacy@autolanding-demo.it">privacy@autolanding-demo.it</a>.</p>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="titolo-conservazione">
+    <div class="container">
+      <h2 id="titolo-conservazione">Quanto a lungo teniamo i dati</h2>
+      <ul>
+        <li><strong>Se non diventa cliente:</strong> fino a quando non si oppone, e comunque al massimo
+          24 mesi dall'ultimo contatto. Poi i dati vengono cancellati.</li>
+        <li><strong>Se diventa cliente:</strong> i dati del contratto e le fatture si conservano per i
+          termini previsti dalla legge italiana.</li>
+        <li><strong>Se chiude il servizio:</strong> le mandiamo i file del suo sito. Teniamo solo il minimo
+          necessario per fatturazione e adempimenti di legge, e cancelliamo il resto su richiesta.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="section section--alt" aria-labelledby="titolo-cookie">
+    <div class="container">
+      <h2 id="titolo-cookie">Cookie e tracciamento</h2>
+      <p>Su queste pagine non usiamo cookie di tracciamento: nessun contatore pubblicitario, nessun profilo,
+        nessuno strumento che segue la navigazione. Il sito funziona senza installare nulla sul suo browser.</p>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="titolo-condivisione">
+    <div class="container">
+      <h2 id="titolo-condivisione">Con chi condividiamo i dati</h2>
+      <p>Non vendiamo e non cediamo i suoi dati a terzi per i loro scopi commerciali. Usiamo pochi
+        fornitori tecnici — il servizio di posta elettronica, l'hosting, i pagamenti — limitatamente
+        a ciò che serve per far funzionare il servizio.</p>
+    </div>
+  </section>
+
+  <section class="section section--alt" aria-labelledby="titolo-diritti">
+    <div class="container">
+      <h2 id="titolo-diritti">I suoi diritti</h2>
+      <p>In ogni momento lei può:</p>
+      <ul>
+        <li>chiedere conferma dell'esistenza dei suoi dati e ottenerne una copia <strong>(accesso)</strong>;</li>
+        <li>far correggere i dati inesatti <strong>(rettifica)</strong>;</li>
+        <li><strong>opporsi al trattamento per finalità di prospezione commerciale:</strong> basta una mail,
+          l'esclusione è immediata e permanente;</li>
+        <li>chiedere la <strong>cancellazione</strong> dei dati, quando non ci sono obblighi di legge che li richiedono;</li>
+        <li>chiedere la <strong>limitazione</strong> del trattamento;</li>
+        <li>ottenere, dove applicabile, i dati in un formato leggibile da altri servizi <strong>(portabilità)</strong>.</li>
+      </ul>
+      <p>Per esercitarli basta una mail:
+        <!-- MOCK: sostituire -->
+        <a href="mailto:privacy@autolanding-demo.it">privacy@autolanding-demo.it</a>.
+        Non chiediamo moduli né passaggi complessi: verifichiamo solo che la richiesta arrivi dal
+        titolare dell'attività interessata.</p>
+      <p>Se ritiene che il trattamento violi i suoi diritti, può presentare reclamo al
+        <a href="https://www.garanteprivacy.it" target="_blank" rel="noopener">Garante per la protezione
+        dei dati personali</a> (www.garanteprivacy.it).</p>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="titolo-aggiornamenti">
+    <div class="container">
+      <h2 id="titolo-aggiornamenti">Aggiornamenti di questa pagina</h2>
+      <p>Se questa informativa cambia, la pubblichiamo qui con la nuova data.</p>
+      <p class="aggiornata">Ultimo aggiornamento: 30 agosto 2026.</p>
+    </div>
+  </section>
+</main>
+
+<!-- MOCK: sostituire tutta la sezione legale con i dati reali della società -->
+<footer class="site-foot">
+  <div class="container">
+    <p><strong>AutoLanding Demo SRL</strong> · Via Esempio 1, 25100 Brescia (BS) · P.IVA IT00000000000</p>
+    <p><a href="index.html">Torna alla home</a></p>
+    <p>Su questo sito non usiamo cookie di tracciamento.</p>
+  </div>
+</footer>
+</body>
+</html>

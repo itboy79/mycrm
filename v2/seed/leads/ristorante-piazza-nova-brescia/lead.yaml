@@ -1,0 +1,71 @@
+slug: ristorante-piazza-nova-brescia
+stato_pipeline: expired
+verticale: ristorazione
+nome_attivita: Ristorante Piazza Nova
+ragione_sociale: RISTORANTE PIAZZA NOVA DI ROSSI MARIO
+categoria: Ristorante italiano
+citta: Brescia
+cap: '25100'
+indirizzo: Corso Esempio 14, 25100 Brescia
+telefono: +39 030 5550004
+email: info@ristorante-piazza-nova-brescia.example.it
+sito_esistente: false
+orari:
+- giorni: mar-dom
+  apertura: '12:00'
+  chiusura: '14:30'
+- giorni: ven-sab
+  apertura: '19:00'
+  chiusura: '22:30'
+servizi:
+- Cucina tipica
+- Asporto
+- Menu vegetariano
+- Parcheggio
+descrizione: 'Ristorante Piazza Nova a Brescia: cucina di stagione e accoglienza da casa.'
+foto_profilo_url: https://picsum.photos/seed/ristorante-piazza-nova-brescia/1200/800
+recensioni:
+  media: 4.2
+  numero: 92
+fonte: google-maps
+confidence:
+  ragione_sociale: high
+  orari: medium
+  servizi: guess
+suppression: false
+history:
+- stato: scouted
+  data: '2026-08-30T19:56:10+00:00'
+  autore: ciclo-scout-mock
+  nota: lead FINTO per pilot mock (--scout-mock)
+- stato: enriched
+  data: '2026-08-30T19:56:10+00:00'
+  autore: ciclo-scout-mock
+  nota: enrichment simulato (dati già completi nel mock)
+- stato: generated
+  data: '2026-08-30T19:56:10+00:00'
+  autore: ciclo
+  nota: 'landing generata e validata (mock: copy incluso nei dati)'
+- stato: approved
+  data: '2026-08-30T19:56:18+00:00'
+  autore: mock-owner-review
+  nota: batch approvata dal proprietario (simulazione pilot mock)
+- stato: published
+  data: '2026-08-30T19:56:18+00:00'
+  autore: engine.deploy
+  nota: deploy local su https://ristorante-piazza-nova-brescia.demo.autolanding.local, demo scade 2026-09-13T19:56:18+00:00
+- stato: contacted
+  data: '2026-08-30T19:56:18+00:00'
+  autore: engine.outreach
+  nota: 'sequenza mock avviata (v1), ESP: mock'
+- stato: expired
+  data: '2026-09-18T03:01:13+00:00'
+  autore: engine.teardown
+  nota: 'demo scaduta il 2026-09-13T19:56:18+00:00: pagina sostituita, lead non pagato'
+live_url: https://ristorante-piazza-nova-brescia.demo.autolanding.local
+deployed_at: '2026-08-30T19:56:18+00:00'
+demo_expires_at: '2026-09-13T19:56:18+00:00'
+token_completa: 5866cad8-92ed-4425-9317-ca4faf9a9fbd
+token_tipo: demo
+token_emesso_at: '2026-08-30T19:56:18+00:00'
+contacted_at: '2026-08-30T19:56:18+00:00'
