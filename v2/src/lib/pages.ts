@@ -239,35 +239,49 @@ export function storefrontHtml(
 ): string {
   const badgeVerticale: Record<string, string> = {
     ristorazione: "🍽 Ristorazione",
-    saloni: "✂️ Saloni",
+    saloni: "✂ Saloni",
     artigiani: "🔧 Artigiani",
   };
   const schede = siti
     .map((s) => {
       const attivo = s.stato === "active" || s.stato === "paid";
       return `<article class="scheda">
-  <div class="scheda-testa">
-    <span class="badge-v">${badgeVerticale[s.verticale] ?? s.verticale}</span>
-    <span class="citta">${s.citta}</span>
-  </div>
-  <h3>${s.nome}</h3>
-  <div class="scheda-azioni">
-    <a class="mini-btn" href="/sites/${s.slug}/">Apri la demo</a>
-    ${attivo
-      ? `<span class="già">✓ già attivo</span>`
-      : `<a class="mini-btn mini-btn--buy" href="/acquista/${s.slug}">Acquista questa pagina</a>`}
+  <div class="thumb" aria-hidden="true"><iframe loading="lazy" tabindex="-1" src="/sites/${s.slug}/"></iframe></div>
+  <div class="scheda-corpo">
+    <div class="scheda-testa">
+      <span class="badge-v">${badgeVerticale[s.verticale] ?? s.verticale}</span>
+      <span class="citta">${s.citta}</span>
+    </div>
+    <h3>${s.nome}</h3>
+    <ul class="feat"><li>IT + EN</li><li>Orari e mappa</li><li>Google-ready</li></ul>
+    <div class="scheda-azioni">
+      <a class="mini-btn" href="/sites/${s.slug}/">Apri la demo</a>
+      ${attivo
+        ? `<span class="già">✓ attivo</span>`
+        : `<a class="mini-btn mini-btn--buy" href="/acquista/${s.slug}">Acquista · ${setup}€</a>`}
+    </div>
   </div>
 </article>`;
     })
     .join("\n");
 
+  const attivi = siti.filter((s) => s.stato === "active" || s.stato === "paid").length;
+  const verticali = new Set(siti.map((s) => s.verticale)).size;
+
   return pagina2(
     "AutoLanding — il tuo sito è già pronto",
     `<header class="hero-m">
-  <h1>Il tuo sito è già online.<br>Te lo facciamo trovare.</h1>
-  <p class="lead-m">Costruiamo in anticipo la pagina web delle attività della tua zona:
-  sito vero, in <strong>italiano e inglese</strong>, con orari, mappa, menu o servizi e contatti.
-  Se è la tua, la attivi in due minuti.</p>
+  <p class="kicker">Per le attività che non hanno un sito</p>
+  <h1>Il tuo sito è già online.<br><span class="evidenzia">Te lo facciamo trovare.</span></h1>
+  <p class="lead-m">Costruiamo in anticipo la pagina web delle attività della tua zona —
+  in <strong>italiano e inglese</strong>, con orari, mappa, menu o servizi e contatti.
+  Se è la tua, la guardi gratis e la attivi in due minuti.</p>
+  <div class="stats">
+    <div><strong>${siti.length}</strong><span>pagine pronte</span></div>
+    <div><strong>${verticali}</strong><span>verticali</span></div>
+    <div><strong>${attivi}</strong><span>attività già attive</span></div>
+    <div><strong>14 giorni</strong><span>demo gratuita</span></div>
+  </div>
   <div class="prezzo">
     <div><strong>${setup}€</strong> una volta sola (setup)</div>
     <div><strong>${mensile}€/mese</strong> tutto compreso · disdici quando vuoi</div>
@@ -275,32 +289,34 @@ export function storefrontHtml(
 </header>
 <section class="sezione-m">
   <h2>Pagine pronte in questa zona</h2>
-  <p class="help">Ogni pagina è costruita sui dati pubblici dell'attività. La vedi prima di pagare: se non ti piace, non compri niente.</p>
+  <p class="help">Ogni anteprima qui sotto è la pagina vera, costruita sui dati pubblici dell'attività. La vedi prima di pagare: se non ti piace, non compri niente.</p>
   <div class="griglia-schede">${schede || "<p>Nessuna pagina demo al momento: torna a trovarci.</p>"}</div>
 </section>
 <section class="sezione-m sezione-m--alt">
   <h2>Come funziona</h2>
-  <ol class="passi">
-    <li><strong>Trova la tua pagina</strong> nell'elenco (o apri il link che ti abbiamo mandato)</li>
-    <li><strong>Conferma i dati in 2 minuti</strong> dal telefono: nome, orari, servizi, foto</li>
-    <li><strong>Attivi: 99€ + 19€/mese</strong> — sito online, indicizzato su Google, fattura regolare</li>
-  </ol>
-  <p class="help">Siti semplici e onesti: una pagina che fa il suo lavoro, non un cantiere. A fine rapporto te lo consegniamo in export: resta tuo.</p>
+  <div class="passi-grid">
+    <div class="passo"><span class="num">1</span><h3>Trova la tua pagina</h3><p>Nell'elenco qui sopra, o nel link che ti abbiamo mandato. La apri e la guardi con calma.</p></div>
+    <div class="passo"><span class="num">2</span><h3>Confermi i dati</h3><p>Due minuti dal telefono: nome, orari, servizi, foto. Tutto già impostato, tu solo confermi.</p></div>
+    <div class="passo"><span class="num">3</span><h3>Attivi e sei su Google</h3><p>${setup}€ + ${mensile}€/mese. Sito indicizzato, fattura regolare, disdetta libera, export a fine rapporto.</p></div>
+  </div>
 </section>
 <section class="sezione-m">
   <h2>Domande frequenti</h2>
-  <p><strong>È una truffa? Come fate a conoscere la mia attività?</strong><br>
-  I dati della demo vengono da fonti pubbliche (schede, directory). Guarda la pagina: se qualcosa non torna, non pagare — scrivici e la correggiamo.</p>
-  <p><strong>Perché così poco?</strong><br>
-  Perché il sito lo costruisce un sistema automatico e lo controlla una persona: niente incontri, niente cantieri, una pagina che funziona.</p>
-  <p><strong>Il sito resta mio?</strong><br>
-  Sì. Le foto e i testi sono tuoi, e se vai via ricevi l'export completo della pagina.</p>
-  <p><strong>E se smetto di pagare?</strong><br>
-  Resta online fino a fine periodo pagato. Dopo 3 mensilità non incassate si sospende: lo riattivi saldando, senza penali.</p>
+  <details><summary>Come fate a conoscere la mia attività? È una truffa?</summary>
+  <p>I dati della demo vengono da fonti pubbliche (schede Google, directory). Guarda la pagina: se qualcosa non torna, non pagare — scrivici e la correggiamo. Nessun pagamento richiesto prima che tu abbia visto e confermato i dati.</p></details>
+  <details><summary>Perché così poco rispetto a un'agenzia?</summary>
+  <p>Perché il sito lo costruisce un sistema automatico e lo controlla una persona: niente incontri, niente cantieri di settimane, una pagina singola che fa il suo lavoro. Semplicità vera, non scaricità.</p></details>
+  <details><summary>Il sito resta mio?</summary>
+  <p>Sì. Le foto e i testi che fornisci sono tuoi, e se un giorno vai via ricevi l'export completo della pagina (file HTML/CSS): non resta in ostaggio a nessuno.</p></details>
+  <details><summary>E se smetto di pagare?</summary>
+  <p>Resta online fino a fine periodo pagato. Dopo 3 mensilità non incassate si sospende: lo riattivi saldando gli arretrati, senza penali né costi aggiuntivi.</p></details>
+  <details><summary>Cosa non c'è</summary>
+  <p>Una pagina, non un portale: niente prenotazioni online, niente e-commerce, niente multi-pagina. Se ti serve quello, un'agenzia è la scelta giusta — e noi te lo diciamo volentieri.</p></details>
 </section>
 <section class="sezione-m sezione-m--cta">
   <h2>La tua attività non è nell'elenco?</h2>
-  <p>Scrivici: costruiamo la pagina anche per te, la vedi prima di pagare. <a href="mailto:info@example-domain.it">info@example-domain.it</a></p>
+  <p>Costruiamo la pagina anche per te: la vedi prima di pagare, come tutti.</p>
+  <p><a class="big-cta" href="mailto:info@example-domain.it">Scrivici: info@example-domain.it</a></p>
 </section>`,
   );
 }
@@ -338,6 +354,31 @@ border:1px solid var(--blu);color:var(--blu);text-decoration:none;font-weight:60
 :focus-visible{outline:3px solid #8A6420;outline-offset:2px}
 footer{max-width:62rem;margin:1.5rem auto;padding:1rem;color:var(--grigio);font-size:.85rem;text-align:center}
 @media (max-width:500px){h1{font-size:1.35rem}.hero-m{padding:2rem 0 1.4rem}}
+.hero-m{background:linear-gradient(180deg,#16405F 0%,#1E4E79 55%,var(--fondo) 100%);color:#fff;padding:3.5rem 0 2.2rem}
+.hero-m .kicker{color:#BFD9EC;text-transform:uppercase;letter-spacing:.12em;font-size:.8rem;font-weight:700;margin-bottom:.6rem}
+.hero-m .evidenzia{color:#F2A900}
+.hero-m .lead-m{color:#E8F0F6}
+.hero-m .stats{display:flex;gap:.8rem;justify-content:center;flex-wrap:wrap;margin:0 0 1.2rem}
+.stats div{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.25);border-radius:10px;padding:.5rem .9rem;min-width:7rem}
+.stats strong{display:block;font-size:1.3rem}
+.stats span{font-size:.8rem;opacity:.85}
+.prezzo div{background:#fff;color:var(--ink)}
+.thumb{aspect-ratio:8/5;overflow:hidden;border:1px solid var(--bordo);border-bottom:0;border-radius:var(--r) var(--r) 0 0;background:#fff;position:relative}
+.thumb iframe{width:1000px;height:625px;transform:scale(.315);transform-origin:top left;border:0;pointer-events:none}
+.scheda{padding:0;display:flex;flex-direction:column}
+.scheda-corpo{padding:.9rem 1rem 1rem;display:flex;flex-direction:column;gap:.55rem;flex:1}
+.scheda .feat{list-style:none;padding:0;margin:0;display:flex;gap:.5rem;flex-wrap:wrap}
+.scheda .feat li{font-size:.78rem;background:var(--fondo);border:1px solid var(--bordo);border-radius:999px;padding:.1rem .55rem;color:var(--grigio)}
+.scheda .scheda-testa{padding:0}
+details{border:1px solid var(--bordo);border-radius:10px;background:#fff;padding:.8rem 1rem;margin-bottom:.6rem}
+details summary{cursor:pointer;font-weight:600}
+details[open] summary{margin-bottom:.5rem}
+.passi-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(14rem,1fr));gap:1rem}
+.passo{background:#fff;border:1px solid var(--bordo);border-radius:var(--r);padding:1.1rem}
+.passo .num{display:inline-flex;align-items:center;justify-content:center;width:2rem;height:2rem;border-radius:50%;
+background:var(--blu);color:#fff;font-weight:700;margin-bottom:.5rem}
+.big-cta{display:inline-flex;min-height:52px;align-items:center;padding:.8rem 1.6rem;background:var(--blu);color:#fff;
+border-radius:10px;font-weight:700;text-decoration:none}
 </style></head><body>
 <main>${corpo}</main>
 <footer>AutoLanding · <a href="/privacy">Privacy</a> · <a href="/cookie">Cookie</a> · <a href="/condizioni">Condizioni</a></footer>

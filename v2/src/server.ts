@@ -31,12 +31,65 @@ import {
   storefrontHtml,
   wizardHtml,
 } from "./lib/pages";
+import {
+  adminDashboard,
+  adminLeadDetail,
+  adminMessaggio,
+  adminNuovo,
+  adminScouting,
+} from "./lib/admin";
 
 const PORT = Number(process.env.PORT ?? process.env.NIBRUN_HTTP_PORT ?? 3000);
 const HOSTNAME_PUBBLICO =
   process.env.BASE_URL?.replace(/\/$/, "") ||
   (process.env.NIBRUN_HOSTNAME ? `https://${process.env.NIBRUN_HOSTNAME}` : `http://127.0.0.1:${PORT}`);
 const SYNC_TOKEN = process.env.AUTOLANDING_SYNC_TOKEN ?? "";
+const ADMIN_PASSWORD = process.env.AUTOLANDING_ADMIN_PASSWORD ?? "";
+const ADMIN_USER = process.env.AUTOLANDING_ADMIN_USER ?? "admin";
+
+function adminAutorizzato(request: Request): boolean {
+  if (!ADMIN_PASSWORD) return false; // pannello spento finché la password non è impostata
+  const auth = request.headers.get("Authorization") ?? "";
+  if (!auth.startsWith("Basic ")) return false;
+  const [user, pass] = Buffer.from(auth.slice(6), "base64").toString("utf8").split(":", 2);
+  return user === ADMIN_USER && confrontoSicuro(ADMIN_PASSWORD, pass ?? "");
+}
+
+function sfidaAdmin(): Response {
+  return new Response(erroreHtml("Area riservata."), {
+    status: 401,
+    headers: { "WWW-Authenticate": 'Basic realm="autolanding-admin", charset="UTF-8"' },
+  });
+}
+
+function missioniFile(): string {
+  return join(dataDir(), "scouting", "missioni.jsonl");
+}
+
+function missioniLeggi(): Record<string, string>[] {
+  const f = missioniFile();
+  if (!existsSync(f)) return [];
+  return readFileSync(f, "utf8")
+    .split("\n")
+    .filter(Boolean)
+    .map((r) => JSON.parse(r) as Record<string, string>);
+}
+
+function missioniScrivi(list: Record<string, string>[]): void {
+  const f = missioniFile();
+  mkdirSync(dirname(f), { recursive: true });
+  writeFileSync(f, list.map((m) => JSON.stringify(m)).join("\n") + (list.length ? "\n" : ""), "utf8");
+}
+
+function slugDaNome(nome: string, citta: string): string {
+  const base = nome
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-|-$/g, "");
+  return `${base}-${citta.toLowerCase().replace(/[^a-z0-9]+/g, "").slice(0, 12)}`;
+}
 const STRIPE_SECRET = process.env.STRIPE_WEBHOOK_SECRET ?? "";
 
 const VENDITORE = {
@@ -385,6 +438,130 @@ const app = new Elysia()
     set.redirect = String(lead.live_url);
   })
 
+  // --------------------------------------------------- pannello di backend (admin)
+  .onRequest(({ request, set }) => {
+    if (new URL(request.url).pathname.startsWith("/admin") && !adminAutorizzato(request)) {
+      set.status = 401;
+      set.headers["WWW-Authenticate"] = 'Basic realm="autolanding-admin", charset="UTF-8"';
+      return html(erroreHtml("Area riservata: inserisci utente e password del pannello."), 401);
+    }
+  })
+  .get("/admin", ({ query }) => {
+    const tutti = allSlugs()
+      .map((slug) => loadLead(slug))
+      .filter((l): l is Lead => l !== null);
+    const q = (query.q ?? "").toLowerCase();
+    const filtrati = tutti.filter((l) => {
+      if (query.stato && l.stato_pipeline !== query.stato) return false;
+      if (query.verticale && String(l.verticale) !== query.verticale) return false;
+      if (
+        q &&
+        ![l.nome_attivita, l.citta, l.email, l.slug]
+          .map((x) => String(x ?? "").toLowerCase())
+          .some((x) => x.includes(q))
+      )
+        return false;
+      return true;
+    });
+    return html(adminDashboard(filtrati, { stato: query.stato ?? "", verticale: query.verticale ?? "", q: query.q ?? "" }));
+  })
+  .get("/admin/lead/:slug", ({ params }) => {
+    const lead = loadLead(params.slug);
+    if (lead === null) return html(erroreHtml("Lead non trovato."), 404);
+    return html(adminLeadDetail(lead));
+  })
+  .post("/admin/lead/:slug/stato", ({ params, body }) => {
+    const lead = loadLead(params.slug);
+    if (lead === null) return html(erroreHtml("Lead non trovato."), 404);
+    const nuovo = String((body as Record<string, string>).stato ?? "");
+    try {
+      // dal pannello il venditore governa operativamente: transizione diretta con nota
+      if (nuovo !== lead.stato_pipeline) {
+        transition(lead, nuovo, "admin", "cambio stato dal pannello di backend");
+        saveLead(lead);
+      }
+      return html(adminMessaggio("Stato aggiornato", `${lead.nome_attivita} → ${nuovo}`, `/admin/lead/${params.slug}`));
+    } catch (exc) {
+      return html(adminMessaggio("Transizione non valida", String(exc), `/admin/lead/${params.slug}`));
+    }
+  })
+  .post("/admin/lead/:slug/modifica", ({ params, body }) => {
+    const lead = loadLead(params.slug);
+    if (lead === null) return html(erroreHtml("Lead non trovato."), 404);
+    const dati = (body ?? {}) as Record<string, string>;
+    for (const campo of ["descrizione", "telefono", "email"] as const) {
+      if (dati[campo] && dati[campo].trim()) lead[campo] = dati[campo].trim();
+    }
+    nota(lead, "admin", "campi modificati dal pannello");
+    saveLead(lead);
+    return html(adminMessaggio("Salvato", "Campi aggiornati.", `/admin/lead/${params.slug}`));
+  })
+  .post("/admin/lead/:slug/suppression", ({ params }) => {
+    const lead = loadLead(params.slug);
+    if (lead === null) return html(erroreHtml("Lead non trovato."), 404);
+    lead.suppression = true;
+    nota(lead, "admin", "suppression attivata dal pannello");
+    saveLead(lead);
+    return html(adminMessaggio("Suppression attiva", "Questo lead non verrà mai più contattato.", `/admin/lead/${params.slug}`));
+  })
+  .get("/admin/nuovo", () => html(adminNuovo()))
+  .post("/admin/nuovo", ({ body }) => {
+    const dati = (body ?? {}) as Record<string, string>;
+    const nome = (dati.nome_attivita ?? "").trim();
+    const citta = (dati.citta ?? "").trim();
+    if (!nome || !citta) return html(adminMessaggio("Mancano i campi obbligatori", "Nome e città sono richiesti.", "/admin/nuovo"));
+    const slug = slugDaNome(nome, citta);
+    if (loadLead(slug) !== null) return html(adminMessaggio("Già esiste", `Lead già presente: ${slug}`, "/admin"));
+    const lead: Lead = {
+      slug,
+      stato_pipeline: "enriched",
+      verticale: dati.verticale ?? "ristorazione",
+      nome_attivita: nome,
+      ragione_sociale: nome.toUpperCase(),
+      categoria: dati.categoria ?? "",
+      citta,
+      indirizzo: dati.indirizzo ?? "",
+      telefono: dati.telefono ?? "",
+      email: dati.email ?? "",
+      sito_esistente: false,
+      servizi: [],
+      descrizione: dati.descrizione ?? "",
+      fonte: "manuale",
+      confidence: {},
+      suppression: false,
+      token_completa: crypto.randomUUID(),
+      history: [
+        { stato: "scouted", data: new Date().toISOString(), autore: "admin", nota: "lead manuale dal pannello" },
+        { stato: "enriched", data: new Date().toISOString(), autore: "admin", nota: "creato già arricchito (pronto per generate)" },
+      ],
+    };
+    saveLead(lead);
+    logAttivita(slug, "lead_manuale", "admin");
+    return html(adminMessaggio("Lead creato", `${nome} (${slug}) è in stato enriched: in locale lancia render/ciclo per generare la landing.`, `/admin/lead/${slug}`));
+  })
+  .get("/admin/scouting", () => html(adminScouting(missioniLeggi() as never)))
+  .post("/admin/scouting", ({ body }) => {
+    const dati = (body ?? {}) as Record<string, string>;
+    const zona = (dati.zona ?? "").trim();
+    if (!zona) return html(adminMessaggio("Manca la zona", "La zona è obbligatoria.", "/admin/scouting"));
+    const missione = {
+      zona,
+      verticale: dati.verticale ?? "ristorazione",
+      n: String(Math.min(Math.max(Number(dati.n ?? 10) || 10, 1), 30)),
+      stato: "pending",
+      creata: new Date().toISOString(),
+    };
+    const lista = missioniLeggi();
+    lista.push(missione);
+    missioniScrivi(lista);
+    logAttivita(`scouting:${zona}`, "missione_creata", `${missione.n} × ${missione.verticale}`);
+    return html(adminMessaggio(
+      "Missione creata",
+      `${missione.n} attività ${missione.verticale} a ${zona} in coda. In locale: <code>engine scouting-pull</code> (l'agente segue SOP 01).`,
+      "/admin/scouting",
+    ));
+  })
+
   // --------------------------------------------------- sync dall'engine locale
   .post("/api/sync", ({ request, body }) => {
     if (!syncAutorizzato(request)) {
@@ -404,6 +581,16 @@ const app = new Elysia()
     }
     logAttivita("sync", "push", `${scritti} file`);
     return json({ ok: true, scritti });
+  })
+  .get("/api/sync/scouting", ({ request }) => {
+    if (!syncAutorizzato(request)) {
+      return json({ error: "non autorizzato" }, SYNC_TOKEN ? 401 : 503);
+    }
+    const tutte = missioniLeggi();
+    const pending = tutte.filter((m) => m.stato === "pending");
+    for (const m of tutte) if (m.stato === "pending") m.stato = "pulled";
+    if (pending.length) missioniScrivi(tutte);
+    return json({ missioni: pending });
   })
   .get("/api/sync/lead", ({ request, query }) => {
     if (!syncAutorizzato(request)) {
